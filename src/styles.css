@@ -1,1 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+ul,
+il,
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+:root{
+  --background-color: #23343B;
+  --orange-color: #FB5927;
+  --red-color: #F54A4A;
+}

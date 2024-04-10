@@ -1,0 +1,43 @@
+<div class="main">
+  <div class="card-register">
+    <h1>Cadastrar</h1>
+    <form class="form" id="form" #f="ngForm" (ngSubmit)="cadastrar(f)">
+      <div class="input">
+        <label for="nome">Nome Completo</label>
+        <input type="text" name="name" id="name" ngModel required minlength="2" #name="ngModel" />
+        <div *ngIf="(name?.invalid && name?.touched) || name?.dirty">
+          <app-mensagem *ngIf="name?.errors?.['required']" mensagem="O campo de nome deve ser preenchido"></app-mensagem>
+          <app-mensagem *ngIf="name?.errors?.['minlength']"
+            mensagem="O nome deve ter no mínimo 2 caracteres"></app-mensagem>
+        </div>
+      </div>
+      <div class="input">
+        <label for="email">Email</label>
+        <input type="text" name="email" id="email" ngModel required pattern="^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$"
+          #email="ngModel" />
+        <div *ngIf="(email?.invalid && email?.touched) || email?.dirty">
+          <app-mensagem *ngIf="email?.errors?.['required']" mensagem="O email deve ser preenchido"></app-mensagem>
+          <app-mensagem *ngIf="email?.errors?.['pattern']"
+            mensagem="O campo deve seguir este padrao: 'exemplo@dominio.com'"></app-mensagem>
+        </div>
+      </div>
+      <div class="input">
+        <label for="senha">Senha</label>
+        <input type="password" name="password" id="password" ngModel required minlength="8" #password="ngModel" />
+        <div *ngIf="(password?.invalid && password?.touched) || password?.dirty">
+          <app-mensagem *ngIf="password?.errors?.['required']"
+            mensagem="O campo de senha deve ser preenchido"></app-mensagem>
+          <app-mensagem *ngIf="password?.errors?.['minlength']"
+            mensagem="O campo deve possuir no minimo 8 caracteres"></app-mensagem>
+        </div>
+      </div>
+      <button type="submit" class="form__button">Enviar formulário</button>
+    </form>
+    <div class="login">
+      <p>Você já possui uma conta?</p>
+      <p (click)="login()" class="login__click">Login</p>
+    </div>
+
+  </div>
+  <img src="../../../assets/img/img-register.png" alt="">
+</div>
