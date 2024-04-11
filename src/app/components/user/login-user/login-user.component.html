@@ -20,6 +20,7 @@
             mensagem="O campo de senha deve ser preenchido"></app-mensagem>
           <app-mensagem *ngIf="password?.errors?.['minlength']"
             mensagem="O campo deve possuir no minimo 8 caracteres"></app-mensagem>
+            <app-mensagem [ngStyle]="{'display': display}" mensagem="Usuário não encontrado"></app-mensagem>
         </div>
       </div>
       <button type="submit" class="form__button">Entrar</button>

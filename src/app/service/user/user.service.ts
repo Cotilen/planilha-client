@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, ViewChild } from '@angular/core';
 import { User } from './user';
 import { Observable } from 'rxjs';
 
@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
+
 
   constructor(private http: HttpClient) { }
 
@@ -17,4 +18,9 @@ export class UserService {
 
     return this.http.post<User>(this.url, user)
     }
+
+  login(user: User): Observable<User>{
+    return this.http.post<User>(this.url + '/login', user)
+
+  }
 }
