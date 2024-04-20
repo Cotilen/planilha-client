@@ -34,10 +34,6 @@ async cadastrar(form: NgForm) {
   }
 }
 
-login(){
-  this.router.navigate(["./login"]);
-}
-
 }
 
 

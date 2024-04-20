@@ -14,7 +14,12 @@
       </div>
       <div class="input">
         <label for="senha">Senha</label>
-        <input type="password" name="password" id="password" ngModel required minlength="8" #password="ngModel" />
+        <i class="fa-solid fa-eye-slash"></i>
+        <label class="label-eye">
+        <input  type="password" name="password" id="password" ngModel required minlength="8" #password="ngModel" />
+        <img (click)="trocarVisibilidade()" id="eye"  class="eye" src={{eyeImage}} alt="">
+        </label>
+
         <div *ngIf="(password?.invalid && password?.touched) || password?.dirty">
           <app-mensagem *ngIf="password?.errors?.['required']"
             mensagem="O campo de senha deve ser preenchido"></app-mensagem>
@@ -27,7 +32,7 @@
     </form>
     <div class="login">
       <p>Não possui uma conta ainda?</p>
-      <p (click)="register()" class="register__click">Cadastre-se</p>
+      <p routerLink="/register" class="register__click">Cadastre-se</p>
     </div>
 
   </div>

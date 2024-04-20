@@ -11,6 +11,9 @@ import { LoginUserComponent } from './components/user/login-user/login-user.comp
 
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
+import { HeaderComponent } from './header/header.component';
+import { SaldoDiarioComponent } from './dashboard/saldo-diario/saldo-diario.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +21,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RegisterUserComponent,
     MensagemComponent,
     LoginUserComponent,
+    DashboardComponent,
+    HeaderComponent,
+    SaldoDiarioComponent
 
   ],
   imports: [

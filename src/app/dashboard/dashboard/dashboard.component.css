@@ -1,0 +1,12 @@
+.container{
+  display: grid;
+  grid-template-areas: 'header main';
+}
+
+.header{
+  grid-area: 'header';
+}
+
+.main{
+  grid-area:'main';
+}
