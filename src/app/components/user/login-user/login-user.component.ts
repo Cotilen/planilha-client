@@ -25,14 +25,12 @@ export class LoginUserComponent {
   ngOnInit(): void {
   }
 
-
-
   logar(form: NgForm) {
 
     if (form.valid) {
       this.userService.login(form.value).subscribe(
         (user) => {
-          console.log(user); // Aqui você recebe os dados do usuário
+          localStorage.setItem('id', `${user.user.id}`);
           this.toastr.success('Login efetuado com sucesso!', 'Sucesso!')
           this.router.navigate(["./dashboard"]);
         },

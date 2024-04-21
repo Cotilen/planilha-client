@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SaldoDiarioComponent } from './saldo-diario.component';
+import { ValorRetangularComponent } from './valor-retangular.component';
 
-describe('SaldoDiarioComponent', () => {
-  let component: SaldoDiarioComponent;
-  let fixture: ComponentFixture<SaldoDiarioComponent>;
+describe('ValorRetangularComponent', () => {
+  let component: ValorRetangularComponent;
+  let fixture: ComponentFixture<ValorRetangularComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SaldoDiarioComponent]
+      imports: [ValorRetangularComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(SaldoDiarioComponent);
+    fixture = TestBed.createComponent(ValorRetangularComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

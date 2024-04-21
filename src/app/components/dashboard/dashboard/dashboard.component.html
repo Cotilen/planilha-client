@@ -1,0 +1,14 @@
+<div class="container">
+  <app-header></app-header>
+  <div class="main">
+    <div class="container-retangulos">
+      <app-valor-retangular title="Receita" value="{{valueReceita}}" img="../../../assets/img/retangulo-receita.png" color="var(--green-color)"></app-valor-retangular>
+      <app-valor-retangular title="Despesa" value="{{valueDespesa}}" img="../../../assets/img/expense.png" color="var(--red-color)"></app-valor-retangular>
+      <app-valor-retangular title="Saldo" value="{{valueSaldo}}" img="../../../assets/img/wallet.png" color={{background}}></app-valor-retangular>
+      <app-valor-retangular title="Data" value="{{valueData}}" img="../../../assets/img/data.png" color="var(--orange-color)"></app-valor-retangular>
+    </div>
+    <div class="grafico">
+      <h1>Texto</h1>
+    </div>
+  </div>
+</div>

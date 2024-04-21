@@ -1,5 +1,5 @@
 .container{
-  background-color: var(--background-color);
+  background-color: var(--second-color);
   display: flex;
   flex-direction: column;
   width: 300px;

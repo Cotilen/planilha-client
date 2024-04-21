@@ -11,9 +11,9 @@ import { LoginUserComponent } from './components/user/login-user/login-user.comp
 
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
-import { HeaderComponent } from './header/header.component';
-import { SaldoDiarioComponent } from './dashboard/saldo-diario/saldo-diario.component';
+import { DashboardComponent } from './components/dashboard/dashboard/dashboard.component';
+import { HeaderComponent } from './components/header/header.component';
+import { ValorRetangularComponent } from './components/valor-retangular/valor-retangular.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,7 @@ import { SaldoDiarioComponent } from './dashboard/saldo-diario/saldo-diario.comp
     LoginUserComponent,
     DashboardComponent,
     HeaderComponent,
-    SaldoDiarioComponent
+    ValorRetangularComponent
 
   ],
   imports: [
