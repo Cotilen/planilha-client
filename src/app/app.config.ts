@@ -14,6 +14,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardComponent } from './components/dashboard/dashboard/dashboard.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ValorRetangularComponent } from './components/valor-retangular/valor-retangular.component';
+import { Chart } from 'chart.js/dist';
+import { QuantidadeValoresComponent } from './components/dashboard/quantidade-valores/quantidade-valores.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { ValorRetangularComponent } from './components/valor-retangular/valor-re
     LoginUserComponent,
     DashboardComponent,
     HeaderComponent,
-    ValorRetangularComponent
+    ValorRetangularComponent,
+    QuantidadeValoresComponent
 
   ],
   imports: [
@@ -32,7 +35,7 @@ import { ValorRetangularComponent } from './components/valor-retangular/valor-re
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

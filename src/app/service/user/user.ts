@@ -12,7 +12,7 @@ export interface UserArray{
 export interface UserData{
   recipe: UserRecipe[],
   fixedrecipe: UserFixedRecipe[],
-  expense: UserFixedExpense[],
+  expense: UserExpense[],
   fixedexpense: UserFixedExpense[],
   saldo: number
 }
@@ -28,6 +28,7 @@ export interface UserFixedRecipe{
   id: number,
   name: string,
   value: number,
+  dateRecipe: string
 }
 
 export interface UserExpense{
@@ -40,5 +41,6 @@ export interface UserExpense{
 export interface UserFixedExpense{
   id: number
   name: string
-  value: number
+  value: number,
+  dateExpense: string
 }

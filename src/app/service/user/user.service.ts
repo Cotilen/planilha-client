@@ -22,7 +22,11 @@ export class UserService {
 
   }
 
-  getDataDasboard(id: number, date: number): Observable<UserData>{
+  getDataDashboard(id: number, date: number): Observable<UserData>{
     return this.http.get<UserData>(this.url + id + '/data/' + date)
+  }
+
+  getDataGrafico(id: number, year: number): Observable<UserData>{
+    return this.http.get<UserData>(this.url + 'data?year=' + year + '&user=' + id)
   }
 }

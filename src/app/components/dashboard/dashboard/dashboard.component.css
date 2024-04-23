@@ -1,17 +1,21 @@
 .container{
+  width: 100vw;
   display: grid;
   grid-template-areas: 'header main';
+  grid-template-columns: 310px auto;
   background-color: var(--background-color);
 }
 
 .header{
-  grid-area: 'header';
+  grid-area: header;
 }
 
 .main{
-  grid-area:'main';
+  grid-area:main;
   display: grid;
-  grid-template-areas: 'retangulo grafico';
+  grid-template-areas: 'retangulo grafico' 'valores valores' ;
+  grid-template-rows: 375px 240px;
+
 }
 
 .container-retangulos{
@@ -24,11 +28,25 @@
   height: 365px;
   flex-wrap: wrap;
   gap: 20px;
-  grid-area: 'retangulo';
+  grid-area: retangulo;
 
 }
 
 .grafico{
+  grid-area: grafico;
   height: 365px;
   width: 540px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: White;
+  background-color: var(--second-color);
+}
+
+.valores{
+  width: 100%;
+  grid-area: valores;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
