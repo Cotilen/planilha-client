@@ -1,0 +1,19 @@
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th class="titles">Nome</th>
+        <th>Valor</th>
+        <th>Data</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let dados of list">
+        <td>{{dados.nome}}</td>
+        <td class="green">{{dados.valor}}</td>
+        <td>{{dados.data}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

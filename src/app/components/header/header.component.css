@@ -48,3 +48,15 @@ a{
   align-items: end;
   gap: 10px;
 }
+
+@media (max-width: 1450px) {
+  .container{
+    width: 260px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .container{
+    width: 180px;
+  }
+}

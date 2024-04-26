@@ -1,4 +1,4 @@
-.container{
+.container {
   width: 100vw;
   display: grid;
   grid-template-areas: 'header main';
@@ -6,47 +6,203 @@
   background-color: var(--background-color);
 }
 
-.header{
+.header {
   grid-area: header;
 }
 
-.main{
-  grid-area:main;
+.main {
+  grid-area: main;
   display: grid;
-  grid-template-areas: 'retangulo grafico' 'valores valores' ;
-  grid-template-rows: 375px 240px;
+  grid-template-areas: 'start' 'valores' 'graficosCheios';
+  grid-template-rows: 355px 180px;
 
 }
 
-.container-retangulos{
+.start {
+  grid-area: start;
+  display: flex;
+  gap: 60px;
+  padding-left: 60px;
+}
+
+.container-retangulos {
   background-color: var(--second-color);
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  width: 586px;
-  height: 365px;
+  width: 700px;
+  height: 345px;
   flex-wrap: wrap;
   gap: 20px;
   grid-area: retangulo;
-
+  border-radius: 20px;
 }
 
-.grafico{
+.grafico {
   grid-area: grafico;
-  height: 365px;
-  width: 540px;
+  height: 345px;
+  width: 650px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: White;
   background-color: var(--second-color);
+  border-radius: 20px;
 }
 
-.valores{
+.valores {
   width: 100%;
   grid-area: valores;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  padding-left: 60px;
+  gap: 60px;
+}
+
+.graficosCheios {
+  grid-area: graficosCheios;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  padding-left: 60px;
+
+}
+
+.chartAnual {
+  background-color: var(--second-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-area: anual;
+  height: 350px;
+  width: 900px;
+  border-radius: 20px;
+}
+
+.chartTotal {
+  background-color: var(--second-color);
+  grid-area: total;
+  height: 350px;
+  width: 490px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+}
+
+@media (max-width: 1450px) {
+  .container {
+    grid-template-columns: 270px auto;
+  }
+
+  .main {
+    display: grid;
+    grid-template-rows: 320px 70px;
+  }
+
+  .container-retangulos {
+    width: 509px;
+    height: 300px;
+  }
+
+  .grafico {
+    height: 300px;
+    width: 457px;
+  }
+
+  .chartAnual {
+    width: 650px;
+  }
+
+  #chartAnual {
+    width: 800px;
+    height: 200px;
+  }
+
+  .chartTotal {
+    width: 400px;
+  }
+}
+
+@media (max-width: 1360px) {
+  .main {
+    display: grid;
+    grid-template-rows: 260px 110px;
+  }
+
+  .container-retangulos {
+    width: 480px;
+    height: 250px;
+  }
+
+  .grafico {
+    height: 250px;
+    width: 420px;
+  }
+
+  .valores {
+    justify-content: start;
+  }
+
+  .graficosCheios {
+    gap: 20px;
+    align-items: normal;
+  }
+
+  .chartAnual {
+    width: 540px;
+    height: 235px;
+  }
+
+  .chartTotal {
+    height: 235px;
+  }
+}
+
+@media(max-width: 1024px) {
+
+  .container {
+    grid-template-columns: 190px auto;
+  }
+
+  .main{
+    grid-template-rows: 220px 170px;
+
+  }
+
+  .start {
+    gap: 30px;
+    padding-left: 30px;
+  }
+
+  .container-retangulos {
+    width: 380px;
+    height: 200px;
+  }
+
+  .grafico {
+    height: 200px;
+    width: 350px;
+  }
+
+  .valores {
+    padding-left: 30px;
+    gap: 30px;
+  }
+
+  .graficosCheios{
+    padding-left: 30px;
+  }
+
+  .chartAnual{
+    width: 450px;
+    height: 300px;
+  }
+
+  .chartTotal {
+    width: 300px;
+    height: 300px;
+  }
+
 }

@@ -16,6 +16,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { ValorRetangularComponent } from './components/valor-retangular/valor-retangular.component';
 import { Chart } from 'chart.js/dist';
 import { QuantidadeValoresComponent } from './components/dashboard/quantidade-valores/quantidade-valores.component';
+import { ReceitaComponent } from './components/receita/receita/receita.component';
+import { ListaComponent } from './components/lista/lista.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { QuantidadeValoresComponent } from './components/dashboard/quantidade-va
     DashboardComponent,
     HeaderComponent,
     ValorRetangularComponent,
-    QuantidadeValoresComponent
+    QuantidadeValoresComponent,
+    ReceitaComponent,
+    ListaComponent
 
   ],
   imports: [

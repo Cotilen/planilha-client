@@ -3,15 +3,60 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 230px;
-  width: 370px;
+  height: 200px;
+  width: 430px;
   background-color: var(--second-color);
   gap: 10px;
   border-radius: 20px;
   color: white;
 }
 
+.type, .dados{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
 img{
   max-width: 40px;
   max-height: 40px;
+}
+
+@media (max-width: 1450px){
+  .container{
+    width: 262.5px;
+    height: 150px;
+    gap: 5px;
+  }
+
+  img{
+    max-width: 30px;
+    max-height: 30px;
+  }
+}
+
+@media (max-width: 1360px){
+  .container{
+    width: 280px;
+    height: 100px;
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  p{
+    text-align: center;
+  }
+
+
+
+}
+
+@media (max-width: 1024px){
+  .container{
+    width: 235px;
+    height: 150px;
+    gap: 20px;
+  }
 }

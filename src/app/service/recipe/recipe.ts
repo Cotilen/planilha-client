@@ -1,6 +1,10 @@
-export interface User{
+export interface Recipe {
   id?: number,
   name?: string,
-  email?: string,
-  password?: string,
+  value?: string,
+  dateRecipe: string,
+}
+
+export interface RecipeArray {
+  recipe: Recipe[]
 }

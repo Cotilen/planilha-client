@@ -1,19 +1,29 @@
 <div class="container">
   <app-header></app-header>
   <div class="main">
-    <div class="container-retangulos">
-      <app-valor-retangular title="Receita" value="{{valueReceitaDash}}" img="../../../assets/img/retangulo-receita.png" color="var(--green-color)"></app-valor-retangular>
-      <app-valor-retangular title="Despesa" value="{{valueDespesaDash}}" img="../../../assets/img/expense.png" color="var(--red-color)"></app-valor-retangular>
-      <app-valor-retangular title="Saldo" value="{{valueSaldo}}" img="../../../assets/img/wallet.png" color={{background}}></app-valor-retangular>
-      <app-valor-retangular title="Data" value="{{valueData}}" img="../../../assets/img/data.png" color="var(--orange-color)"></app-valor-retangular>
-    </div>
-    <div class="grafico">
-      <canvas style="height: 275px; width: 350px;" id="myChart"></canvas>
+    <div class="start">
+      <div class="container-retangulos">
+        <app-valor-retangular title="Receita" value="{{valueReceitaDash}}" img="../../../assets/img/retangulo-receita.png" color="var(--green-color)"></app-valor-retangular>
+        <app-valor-retangular title="Despesa" value="{{valueDespesaDash}}" img="../../../assets/img/expense.png" color="var(--red-color)"></app-valor-retangular>
+        <app-valor-retangular title="Saldo" value="{{valueSaldo}}" img="../../../assets/img/wallet.png" color={{background}}></app-valor-retangular>
+        <app-valor-retangular title="Data" value="{{valueData}}" img="../../../assets/img/data.png" color="var(--orange-color)"></app-valor-retangular>
+      </div>
+      <div class="grafico">
+        <canvas style="max-height: 275px; max-width: 350px;" id="myChart"></canvas>
+      </div>
     </div>
     <div class="valores">
       <app-quantidade-valores img="../../../../assets/img/arrow-top.png" data={{dataReceita}} tipo="Receita" value={{valueReceita}} dados="Data"></app-quantidade-valores>
       <app-quantidade-valores img="../../../../assets/img/arrow-bottom.png" data={{dataDespesa}} tipo="Despesa" value={{valueDespesa}} dados="Data"></app-quantidade-valores>
       <app-quantidade-valores img="../../../../assets/img/arrow-circle .png" data={{quantidadeDespesa}} tipo="Qtd. de Receitas" value={{quantidadeReceita}} dados="Qtd. de Despesas"></app-quantidade-valores>
+    </div>
+    <div class="graficosCheios">
+      <div class="chartAnual">
+        <canvas id="chartAnual" style="height: 280px; max-width: 750px;"></canvas>
+      </div>
+      <div class="chartTotal">
+        <canvas id="chartTotal" style="height: 150px; max-width: 350px;"></canvas>
+      </div>
     </div>
   </div>
 </div>
