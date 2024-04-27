@@ -118,7 +118,7 @@ export class ReceitaComponent {
 
         let dataAtual = new Date().getMonth() + 1
 
-        if (mes == dataAtual) {
+        if (mes <= dataAtual) {
           this.listaFixa.push({ nome: `${recipe.name}`, valor: Number(recipe.value), data: `${diaFormatado}/${mesFormatado}/${ano}` })
         }
       })

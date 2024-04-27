@@ -18,6 +18,7 @@ import { Chart } from 'chart.js/dist';
 import { QuantidadeValoresComponent } from './components/dashboard/quantidade-valores/quantidade-valores.component';
 import { ReceitaComponent } from './components/receita/receita/receita.component';
 import { ListaComponent } from './components/lista/lista.component';
+import { DespesaComponent } from './components/despesa/despesa.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ListaComponent } from './components/lista/lista.component';
     ValorRetangularComponent,
     QuantidadeValoresComponent,
     ReceitaComponent,
-    ListaComponent
+    ListaComponent,
+    DespesaComponent
 
   ],
   imports: [

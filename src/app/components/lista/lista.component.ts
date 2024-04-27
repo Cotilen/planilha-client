@@ -10,5 +10,5 @@ import { RecipeService } from '../../service/recipe/recipe.service';
 export class ListaComponent {
 
   @Input() list = [{nome: "", valor: 0, data: ""}]
-
+  @Input() color = "var(--green-color)"
 }

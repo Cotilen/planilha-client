@@ -10,7 +10,7 @@
     <tbody>
       <tr *ngFor="let dados of list">
         <td>{{dados.nome}}</td>
-        <td class="green">{{dados.valor}}</td>
+        <td [ngStyle]="{'color': color}">{{dados.valor}}</td>
         <td>{{dados.data}}</td>
       </tr>
     </tbody>

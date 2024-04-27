@@ -1,0 +1,89 @@
+.container {
+  width: 100vw;
+  display: grid;
+  grid-template-areas: 'header main';
+  grid-template-columns: 310px auto;
+  background-color: var(--background-color);
+  padding-right: 35px;
+}
+
+.orange{
+  background-color: var(--orange-color);
+}
+
+.red{
+  background-color: var(--red-color);
+
+}
+
+.main{
+  grid-area: main;
+}
+
+.botoes{
+  background-color: var(--second-color);
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  border-radius: 20px;
+  border: 5px ridge var(--second-color);
+}
+
+.botao{
+  color: #fff;
+  width: 205px;
+  height: 60px;
+  border-radius: 30px;
+  border: 3px solid #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+
+.despesa{
+  width: 100%;
+  display: flex;
+  gap: 50px;
+  padding-left: 50px;
+
+}
+
+.titulo{
+  font-size: 2rem;
+  font-weight: bold;
+  color: #fff;
+  padding-top: 20px;
+  margin-bottom: 10px;
+  padding-left: 50px;
+}
+
+#pizza{
+  background-color: var(--second-color);
+  border-radius: 20px;
+  border: 5px ridge var(--second-color);
+}
+
+.despesa-fixa{
+  display: flex;
+  padding-left: 50px;
+  gap: 50px;
+}
+
+.retangulo-valores{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  background-color: var(--second-color);
+  border-radius: 20px;
+  border: 5px ridge var(--second-color);
+  width: 600px;
+  height: 400px;
+}
+
