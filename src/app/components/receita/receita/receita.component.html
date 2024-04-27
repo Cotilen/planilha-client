@@ -1,14 +1,24 @@
 <div class="container">
   <app-header></app-header>
   <div class="main">
-    <div class="botoes">
-      <button class="botao orange">Criar Receita Fixa</button>
-      <button class="botao green">Criar Receita</button>
-    </div>
     <h1 class="titulo">Receita</h1>
     <div class="receita">
       <app-lista [list]="lista"></app-lista>
-      <canvas id="pizza" style="max-width: 500px; max-height: 500px;"></canvas>
+      <canvas id="pizza" style="max-width: 400px; max-height: 400px;"></canvas>
+      <div class="botoes">
+        <button class="botao orange">Criar Receita Fixa</button>
+        <button class="botao green">Criar Receita</button>
+      </div>
+    </div>
+    <h1 class="titulo">Receita Fixa</h1>
+    <div class="receita-fixa">
+      <app-lista [list]="listaFixa"></app-lista>
+      <div class="retangulo-valores">
+        <app-valor-retangular title="Receitas" value="{{value}}" img="../../../assets/img/retangulo-receita.png" color="var(--green-color)"></app-valor-retangular>
+        <app-valor-retangular title="Receitas Fixas" value="{{valueFixed}}" img="../../../assets/img/retangulo-receita.png" color="var(--orange-color)"></app-valor-retangular>
+        <app-valor-retangular title="Receitas Unificadas" img="../../../assets/img/astec.png" color="var(--orange-color)"></app-valor-retangular>
+        <app-valor-retangular title="Total" value="{{total}}" img="../../../assets/img/balance.png" color="var(--green-color)"></app-valor-retangular>
+      </div>
     </div>
   </div>
 </div>

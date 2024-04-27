@@ -1,6 +1,6 @@
 .table-container {
   width: 650px;
-  height: 500px; /* Altura fixa da tabela */
+  height: 400px; /* Altura fixa da tabela */
   overflow-y: auto; /* Adiciona barra de rolagem quando necessário */
   border: 5px ridge var(--second-color);
   border-radius: 20px;

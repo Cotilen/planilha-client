@@ -16,55 +16,64 @@ export class ReceitaComponent {
   constructor(
     private service: RecipeService,
     private recipeService: FixedrecipeService
-  ){}
+  ) { }
 
   id = Number(localStorage.getItem('id'))
-  lista : ItemLista[] = []
+  lista: ItemLista[] = []
+  listaFixa: ItemLista[] = []
+  value = 0
+  valueFixed = 0
+  total = 0
 
   ngOnInit(): void {
     this.listRecipe()
-    // this.valuePizzaChart()
+    this.listRecipeFixed()
   }
 
   ngAfterViewInit(): void {
     let value = [0]
     value.pop()
 
-    this.service.getRecipes(this.id).subscribe(recipes =>{
+    this.service.getRecipes(this.id).subscribe(recipes => {
       let valueReceita = 0
       let valueFixedReceita = 0
       let dataAtual = new Date().getMonth() + 1
 
-      recipes.recipe.forEach(recipe =>{
+      recipes.recipe.forEach(recipe => {
         const partesData = recipe.dateRecipe.split('/');
-        const date = new Date(Number(partesData[2]), Number(partesData[1]) - 1, Number(partesData[0]))
+        const date = new Date(partesData[1])
+
         let gmt = addHours(date, 3)
         let mes = gmt.getMonth() + 1
 
-        if(mes == dataAtual){
+        if (mes == dataAtual) {
           valueReceita += Number(recipe.value)
         }
       })
 
-    this.recipeService.getRecipes(this.id).subscribe(recipes =>{
-      recipes.recipe.forEach(recipe =>{
+      this.recipeService.getRecipes(this.id).subscribe(recipes => {
+        recipes.recipe.forEach(recipe => {
+          let partesData = recipe.dateRecipe.split('/');
+          let date = new Date(partesData[0]);
 
-        const partesData = recipe.dateRecipe.split('/');
-        const date = new Date(Number(partesData[2]), Number(partesData[1]) - 1, Number(partesData[0]))
-        let gmt = addHours(date, 3)
-        let mes = gmt.getMonth() + 1
-
-        if(mes >= dataAtual){
-          valueFixedReceita += Number(recipe.value)
-        }
+          let gmt = addHours(date, 3)
+          let mes = gmt.getMonth() + 1
 
 
-      value.push(valueReceita)
-      value.push(valueFixedReceita)
+          if (mes <= dataAtual) {
+            valueFixedReceita += Number(recipe.value)
+          }
+
+        })
+
+        this.value = valueReceita
+        this.valueFixed = valueFixedReceita
+        this.total = this.value + this.valueFixed
+
+        value.push(valueReceita)
+        value.push(valueFixedReceita)
+
       })
-
-
-    })
 
     })
 
@@ -74,18 +83,49 @@ export class ReceitaComponent {
   }
 
 
-  listRecipe(){
+  listRecipe() {
 
-    this.service.getRecipes(this.id).subscribe(recipes =>{
-      recipes.recipe.forEach(recipe =>{
-        this.lista.push({nome: `${recipe.name}`, valor: Number(recipe.value), data: `${recipe.dateRecipe}`})
+    this.service.getRecipes(this.id).subscribe(recipes => {
+      recipes.recipe.forEach(recipe => {
+        const partesData = recipe.dateRecipe.split('/');
+        const date = new Date(partesData[1])
+
+        let gmt = addHours(date, 3)
+        let mes = gmt.getMonth() + 1
+        let dataAtual = new Date().getMonth() + 1
+
+        if (mes == dataAtual) {
+          this.lista.push({ nome: `${recipe.name}`, valor: Number(recipe.value), data: `${recipe.dateRecipe}` })
+        }
       })
-
     })
-
   }
 
-  pizzaChart(value: number[]){
+  listRecipeFixed() {
+
+    this.recipeService.getRecipes(this.id).subscribe(recipes => {
+      recipes.recipe.forEach(recipe => {
+        const partesData = recipe.dateRecipe.split('/');
+        const date = new Date(partesData[0])
+
+        let gmt = addHours(date, 3)
+        let dia = gmt.getDay()
+        let mes = gmt.getMonth() + 1
+        let ano = gmt.getFullYear()
+
+        const diaFormatado = (dia < 10) ? `0${dia}` : dia;
+        const mesFormatado = (mes < 10) ? `0${mes}` : mes;
+
+        let dataAtual = new Date().getMonth() + 1
+
+        if (mes == dataAtual) {
+          this.listaFixa.push({ nome: `${recipe.name}`, valor: Number(recipe.value), data: `${diaFormatado}/${mesFormatado}/${ano}` })
+        }
+      })
+    })
+  }
+
+  pizzaChart(value: number[]) {
 
     let date = new Date().getMonth() + 1
     let mes = this.switchMeses(date)
@@ -124,7 +164,7 @@ export class ReceitaComponent {
 
   }
 
-  switchMeses(date: number){
+  switchMeses(date: number) {
     switch (date) {
       case 1:
         return 'Janeiro'
