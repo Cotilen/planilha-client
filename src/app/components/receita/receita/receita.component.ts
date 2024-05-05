@@ -7,6 +7,7 @@ import { FixedrecipeService } from '../../../service/fixedrecipe/fixedrecipe.ser
 import { addHours } from 'date-fns';
 import { ModalService } from '@developer-partners/ngx-modal-dialog';
 import { CreateRecipeComponent } from '../../modals/create-recipe/create-recipe.component';
+import { CreateRecipefixedComponent } from '../../modals/create-recipefixed/create-recipefixed.component';
 
 @Component({
   selector: 'app-receita',
@@ -222,8 +223,8 @@ export class ReceitaComponent {
   }
 
   openModalRecipeFixed(){
-    this.modal.show(CreateRecipeComponent,{
-      title: 'Criar Receita',
+    this.modal.show(CreateRecipefixedComponent,{
+      title: 'Criar Receita Fixa',
     }).result()
       .subscribe((result: any) =>{
         const recipe: Recipe = result as Recipe;

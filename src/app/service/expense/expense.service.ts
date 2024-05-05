@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ExpenseArray } from './expense';
+import { Expense, ExpenseArray } from './expense';
 
 @Injectable({
   providedIn: 'root'
@@ -13,5 +13,9 @@ export class ExpenseService {
 
   getExpenses(id: number): Observable<ExpenseArray>{
     return this.http.get<ExpenseArray>(this.url + "/user/" + id)
+  }
+
+  postExpenses(expense: Expense): Observable<Expense>{
+    return this.http.post<Expense>(this.url, expense)
   }
 }

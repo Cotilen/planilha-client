@@ -4,6 +4,11 @@ import { addHours } from 'date-fns';
 import { ItemLista } from '../../service/lista';
 import { Chart } from 'chart.js';
 import { FixedexpenseService } from '../../service/fixedexpense/fixedexpense.service';
+import { ModalService } from '@developer-partners/ngx-modal-dialog';
+import { CreateExpenseComponent } from '../modals/create-expense/create-expense.component';
+import { Expense } from '../../service/expense/expense';
+import { CreateRecipefixedComponent } from '../modals/create-recipefixed/create-recipefixed.component';
+import { CreateExpensefixedComponent } from '../modals/create-expensefixed/create-expensefixed.component';
 
 @Component({
   selector: 'app-despesa',
@@ -14,7 +19,8 @@ export class DespesaComponent {
 
   constructor(
     private expense: ExpenseService,
-    private fixedExpense: FixedexpenseService
+    private fixedExpense: FixedexpenseService,
+    private modal: ModalService
   ){}
 
   ngOnInit(): void {
@@ -197,5 +203,48 @@ export class DespesaComponent {
       default:
         return 'Indefinido'
     }
+  }
+
+  openModalExpense(){
+    this.modal.show(CreateExpenseComponent,{
+      title: 'Criar Despesa',
+    }).result()
+      .subscribe((result: any) =>{
+        const expense: Expense = result as Expense;
+
+        var despesa = {
+          id_user: this.id ,
+          name: result.name,
+          value: result.valor,
+          dateExpense: result.date,
+          id_category: Number(result.category),
+          description: result.description
+        }
+
+        this.expense.postExpenses(despesa).subscribe(result =>{
+
+          window.location.reload();
+        })
+      })
+  }
+
+  openModalExpenseFixed(){
+    this.modal.show(CreateExpensefixedComponent,{
+      title: 'Criar Despesa Fixa',
+    }).result()
+      .subscribe((result: any) =>{
+        const expense: Expense = result as Expense;
+        var despesa = {
+          id_user:this.id ,
+          name: result.name,
+          value: result.valor,
+          dateExpense: result.date,
+          id_category: Number(result.category),
+          description: result.description
+        }
+        this.fixedExpense.postExpenses(despesa).subscribe((result) =>{
+          window.location.reload();
+        })
+      })
   }
 }

@@ -22,6 +22,8 @@ import { DespesaComponent } from './components/despesa/despesa.component';
 import { ModalModule } from '@developer-partners/ngx-modal-dialog';
 import { CreateRecipeComponent } from './components/modals/create-recipe/create-recipe.component';
 import { CreateRecipefixedComponent } from './components/modals/create-recipefixed/create-recipefixed.component';
+import { CreateExpenseComponent } from './components/modals/create-expense/create-expense.component';
+import { CreateExpensefixedComponent } from './components/modals/create-expensefixed/create-expensefixed.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { CreateRecipefixedComponent } from './components/modals/create-recipefix
     ListaComponent,
     DespesaComponent,
     CreateRecipeComponent,
-    CreateRecipefixedComponent
+    CreateRecipefixedComponent,
+    CreateExpenseComponent,
+    CreateExpensefixedComponent
 
   ],
   imports: [

@@ -1,0 +1,31 @@
+<main>
+  <form class="form" id="form" #f="ngForm" (ngSubmit)="cadastrar(f)">
+    <div class="input">
+      <label for="nome">Nome</label>
+      <input type="text" name="name" id="name" ngModel required minlength="2" #name="ngModel" />
+    </div>
+    <div class="input">
+      <label for="valor">Valor</label>
+      <input type="number" name="valor" id="valor" ngModel required #valor="ngModel" />
+    </div>
+    <div class="input">
+      <label for="descricao">Descrição</label>
+      <textarea name="description" id="description" ngModel required minlength="2" #description="ngModel"></textarea>
+    </div>
+    <div class="input">
+      <label for="data">Data</label>
+      <input type="date" name="date" id="date" ngModel required #date="ngModel" />
+    </div>
+    <div class="input">
+      <label for="category">Categoria</label>
+      <select id="categorias" name="category" ngModel required #category="ngModel" >
+        <option value="0"></option>
+        <option *ngFor="let dados of categorias" value="{{dados.id}}">{{dados.name}}</option>
+      </select>
+    </div>
+    <div class="botoes">
+      <button type="button" class="cancelar" (click)="cancelar()">Cancelar</button>
+      <button type="submit" class="salvar">Salvar</button>
+    </div>
+  </form>
+</main>

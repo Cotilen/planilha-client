@@ -6,8 +6,8 @@
         <app-lista [list]="lista" color="var(--red-color)"></app-lista>
         <canvas id="pizza"></canvas>
         <div class="botoes">
-          <button class="botao orange">Criar Despesa Fixa</button>
-          <button class="botao red">Criar Despesa</button>
+          <button class="botao red" (click)="openModalExpense()">Criar Despesa</button>
+          <button class="botao orange" (click)="openModalExpenseFixed()">Criar Despesa Fixa</button>
         </div>
   </div>
 

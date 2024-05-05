@@ -1,5 +1,5 @@
 main{
-  height: 250px;
+  height: 500px;
 }
 
 .form{
@@ -27,6 +27,11 @@ input{
   margin-top: 20px;
 }
 
+#description{
+  height: 100px;
+  max-width: 500px;
+}
+
 button{
   width: 100px;
   height: 30px;
@@ -38,4 +43,9 @@ button{
 
 .salvar{
   background-color: var(--green-color);
+}
+
+#categorias{
+  height: 30px;
+  max-width: 500px;
 }
