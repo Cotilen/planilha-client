@@ -19,6 +19,9 @@ import { QuantidadeValoresComponent } from './components/dashboard/quantidade-va
 import { ReceitaComponent } from './components/receita/receita/receita.component';
 import { ListaComponent } from './components/lista/lista.component';
 import { DespesaComponent } from './components/despesa/despesa.component';
+import { ModalModule } from '@developer-partners/ngx-modal-dialog';
+import { CreateRecipeComponent } from './components/modals/create-recipe/create-recipe.component';
+import { CreateRecipefixedComponent } from './components/modals/create-recipefixed/create-recipefixed.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,9 @@ import { DespesaComponent } from './components/despesa/despesa.component';
     QuantidadeValoresComponent,
     ReceitaComponent,
     ListaComponent,
-    DespesaComponent
+    DespesaComponent,
+    CreateRecipeComponent,
+    CreateRecipefixedComponent
 
   ],
   imports: [
@@ -42,6 +47,7 @@ import { DespesaComponent } from './components/despesa/despesa.component';
     FormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    ModalModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

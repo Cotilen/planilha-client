@@ -1,9 +1,12 @@
+import { Recipe } from './../../../service/recipe/recipe';
 import { Component } from '@angular/core';
 import { RecipeService } from '../../../service/recipe/recipe.service';
 import { ItemLista } from '../../../service/lista';
 import { Chart } from 'chart.js';
 import { FixedrecipeService } from '../../../service/fixedrecipe/fixedrecipe.service';
 import { addHours } from 'date-fns';
+import { ModalService } from '@developer-partners/ngx-modal-dialog';
+import { CreateRecipeComponent } from '../../modals/create-recipe/create-recipe.component';
 
 @Component({
   selector: 'app-receita',
@@ -15,7 +18,8 @@ export class ReceitaComponent {
 
   constructor(
     private service: RecipeService,
-    private recipeService: FixedrecipeService
+    private recipeService: FixedrecipeService,
+    private modal: ModalService
   ) { }
 
   id = Number(localStorage.getItem('id'))
@@ -25,12 +29,57 @@ export class ReceitaComponent {
   valueFixed = 0
   total = 0
 
+
   ngOnInit(): void {
     this.listRecipe()
     this.listRecipeFixed()
+    this.valueChart()
+
   }
 
-  ngAfterViewInit(): void {
+  listRecipe() {
+
+    this.service.getRecipes(this.id).subscribe(recipes => {
+      recipes.recipe.forEach(recipe => {
+        const partesData = recipe.dateRecipe.split('/');
+        const date = new Date(partesData[1])
+
+        let gmt = addHours(date, 3)
+        let mes = gmt.getMonth() + 1
+        let dataAtual = new Date().getMonth() + 1
+
+        if (mes == dataAtual) {
+          this.lista.push({ nome: `${recipe.name}`, valor: Number(recipe.value), data: `${recipe.dateRecipe}` })
+        }
+      })
+    })
+  }
+
+  listRecipeFixed() {
+
+    this.recipeService.getRecipes(this.id).subscribe(recipes => {
+      recipes.recipe.forEach(recipe => {
+        const partesData = recipe.dateRecipe.split('/');
+        const date = new Date(partesData[0])
+
+        let gmt = addHours(date, 3)
+        let dia = gmt.getDay()
+        let mes = gmt.getMonth() + 1
+        let ano = gmt.getFullYear()
+
+        const diaFormatado = (dia < 10) ? `0${dia}` : dia;
+        const mesFormatado = (mes < 10) ? `0${mes}` : mes;
+
+        let dataAtual = new Date().getMonth() + 1
+
+        if (mes <= dataAtual) {
+          this.listaFixa.push({ nome: `${recipe.name}`, valor: Number(recipe.value), data: `${diaFormatado}/${mesFormatado}/${ano}` })
+        }
+      })
+    })
+  }
+
+  valueChart(){
     let value = [0]
     value.pop()
 
@@ -79,50 +128,7 @@ export class ReceitaComponent {
 
     setTimeout(() => {
       this.pizzaChart(value);
-    }, 100); // Aguarda um curto período para garantir que a view esteja pronta
-  }
-
-
-  listRecipe() {
-
-    this.service.getRecipes(this.id).subscribe(recipes => {
-      recipes.recipe.forEach(recipe => {
-        const partesData = recipe.dateRecipe.split('/');
-        const date = new Date(partesData[1])
-
-        let gmt = addHours(date, 3)
-        let mes = gmt.getMonth() + 1
-        let dataAtual = new Date().getMonth() + 1
-
-        if (mes == dataAtual) {
-          this.lista.push({ nome: `${recipe.name}`, valor: Number(recipe.value), data: `${recipe.dateRecipe}` })
-        }
-      })
-    })
-  }
-
-  listRecipeFixed() {
-
-    this.recipeService.getRecipes(this.id).subscribe(recipes => {
-      recipes.recipe.forEach(recipe => {
-        const partesData = recipe.dateRecipe.split('/');
-        const date = new Date(partesData[0])
-
-        let gmt = addHours(date, 3)
-        let dia = gmt.getDay()
-        let mes = gmt.getMonth() + 1
-        let ano = gmt.getFullYear()
-
-        const diaFormatado = (dia < 10) ? `0${dia}` : dia;
-        const mesFormatado = (mes < 10) ? `0${mes}` : mes;
-
-        let dataAtual = new Date().getMonth() + 1
-
-        if (mes <= dataAtual) {
-          this.listaFixa.push({ nome: `${recipe.name}`, valor: Number(recipe.value), data: `${diaFormatado}/${mesFormatado}/${ano}` })
-        }
-      })
-    })
+    }, 100);
   }
 
   pizzaChart(value: number[]) {
@@ -193,5 +199,44 @@ export class ReceitaComponent {
       default:
         return 'Indefinido'
     }
+  }
+
+  openModalRecipe(){
+    this.modal.show(CreateRecipeComponent,{
+      title: 'Criar Receita',
+    }).result()
+      .subscribe((result: any) =>{
+        const recipe: Recipe = result as Recipe;
+
+        console.log(recipe);
+        var receita = {
+          id_user:this.id ,
+          name: result.name,
+          value: result.valor,
+          dateRecipe: result.date
+        }
+        this.service.postRecipe(receita).subscribe((result) =>{
+          window.location.reload();
+        })
+      })
+  }
+
+  openModalRecipeFixed(){
+    this.modal.show(CreateRecipeComponent,{
+      title: 'Criar Receita',
+    }).result()
+      .subscribe((result: any) =>{
+        const recipe: Recipe = result as Recipe;
+        var receita = {
+          id_user:this.id ,
+          name: result.name,
+          value: result.valor,
+          dateRecipe: result.date
+        }
+        this.recipeService.postRecipe(receita).subscribe((result) =>{
+
+          window.location.reload();
+        })
+      })
   }
 }

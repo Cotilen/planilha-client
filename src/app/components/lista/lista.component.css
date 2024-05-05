@@ -26,4 +26,25 @@ thead {
   width: 0px;
 }
 
+@media (max-width: 1450px) {
+  .table-container{
+    width: 400px;
+    height: 300px;
+  }
+}
+
+@media (max-width: 1360px) {
+  .table-container{
+    width: 400px;
+    height: 250px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .table-container{
+    width: 300px;
+    height: 250px;
+  }
+}
+
 

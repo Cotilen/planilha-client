@@ -15,4 +15,8 @@ export class RecipeService {
   getRecipes(id: number): Observable<RecipeArray>{
     return this.http.get<RecipeArray>(this.url + "/user/" + id)
   }
+
+  postRecipe(recipe: Recipe): Observable<Recipe>{
+    return this.http.post<Recipe>(this.url, recipe)
+  }
 }

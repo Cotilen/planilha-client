@@ -1,0 +1,41 @@
+main{
+  height: 250px;
+}
+
+.form{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  color: var(--green-color);
+}
+
+.input{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+input{
+  height: 30px;
+  max-width: 500px;
+}
+
+.botoes{
+  max-width: 500px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+button{
+  width: 100px;
+  height: 30px;
+}
+
+.cancelar{
+  background-color: var(--red-color);
+}
+
+.salvar{
+  background-color: var(--green-color);
+}

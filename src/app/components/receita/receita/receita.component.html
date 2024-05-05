@@ -4,10 +4,10 @@
     <h1 class="titulo">Receita</h1>
     <div class="receita">
       <app-lista [list]="lista"></app-lista>
-      <canvas id="pizza" style="max-width: 400px; max-height: 400px;"></canvas>
+      <canvas id="pizza" ></canvas>
       <div class="botoes">
-        <button class="botao orange">Criar Receita Fixa</button>
-        <button class="botao green">Criar Receita</button>
+        <button class="botao green" (click)="openModalRecipe()">Criar Receita</button>
+        <button class="botao orange" (click)="openModalRecipeFixed()">Criar Receita Fixa</button>
       </div>
     </div>
     <h1 class="titulo">Receita Fixa</h1>

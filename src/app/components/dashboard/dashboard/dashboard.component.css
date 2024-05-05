@@ -14,8 +14,8 @@
   grid-area: main;
   display: grid;
   grid-template-areas: 'start' 'valores' 'graficosCheios';
-  grid-template-rows: 355px 180px;
-
+  grid-template-rows: 355px 210px 350px;
+  padding-top: 10px;
 }
 
 .start {

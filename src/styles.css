@@ -16,6 +16,15 @@ a {
   color: inherit;
 }
 
+.dp-modal-body{
+  background-color: var(--second-color);
+}
+
+.dp-modal-header{
+  background-color: var(--background-color) !important;
+}
+
+
 :root{
   --background-color: #23343B;
   --second-color: #31444B;

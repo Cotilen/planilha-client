@@ -15,4 +15,8 @@ export class FixedrecipeService {
   getRecipes(id: number): Observable<FixedRecipeArray>{
     return this.http.get<FixedRecipeArray>(this.url + "/user/" + id)
   }
+
+  postRecipe(recipe: FixedRecipe): Observable<FixedRecipe>{
+    return this.http.post<FixedRecipe>(this.url, recipe)
+  }
 }
