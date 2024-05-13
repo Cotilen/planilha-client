@@ -8,3 +8,7 @@ export interface Recipe {
 export interface RecipeArray {
   recipe: Recipe[]
 }
+
+export interface OneRecipe{
+  recipe: Recipe
+}

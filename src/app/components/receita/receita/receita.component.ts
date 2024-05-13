@@ -8,6 +8,7 @@ import { addHours } from 'date-fns';
 import { ModalService } from '@developer-partners/ngx-modal-dialog';
 import { CreateRecipeComponent } from '../../modals/create-recipe/create-recipe.component';
 import { CreateRecipefixedComponent } from '../../modals/create-recipefixed/create-recipefixed.component';
+import { EditRecipeComponent } from '../../modals/edit-recipe/edit-recipe.component';
 
 @Component({
   selector: 'app-receita',
@@ -50,7 +51,7 @@ export class ReceitaComponent {
         let dataAtual = new Date().getMonth() + 1
 
         if (mes == dataAtual) {
-          this.lista.push({ nome: `${recipe.name}`, valor: Number(recipe.value), data: `${recipe.dateRecipe}` })
+          this.lista.push({id:Number(recipe.id) ,nome: `${recipe.name}`, valor: Number(recipe.value), data: `${recipe.dateRecipe}` })
         }
       })
     })
@@ -74,7 +75,7 @@ export class ReceitaComponent {
         let dataAtual = new Date().getMonth() + 1
 
         if (mes <= dataAtual) {
-          this.listaFixa.push({ nome: `${recipe.name}`, valor: Number(recipe.value), data: `${diaFormatado}/${mesFormatado}/${ano}` })
+          this.listaFixa.push({ id:Number(recipe.id) ,nome: `${recipe.name}`, valor: Number(recipe.value), data: `${diaFormatado}/${mesFormatado}/${ano}` })
         }
       })
     })
@@ -239,5 +240,24 @@ export class ReceitaComponent {
           window.location.reload();
         })
       })
+  }
+
+  openModalEditRecipe = (id: number) => {
+    this.service.getOneRecipe(id).subscribe((result =>{
+      console.log(result);
+      localStorage.setItem('recipeName', `${result.recipe.name}`)
+      localStorage.setItem('recipeId', `${result.recipe.id}`)
+      localStorage.setItem('recipeDate', `${result.recipe.dateRecipe}`)
+      localStorage.setItem('recipeValue', `${result.recipe.value}`)
+
+      this.modal.show(EditRecipeComponent,{
+        title: 'Editar Receita',
+      }).result()
+        .subscribe((result: any) =>{
+
+          console.log(result);
+
+        })
+       }))
   }
 }

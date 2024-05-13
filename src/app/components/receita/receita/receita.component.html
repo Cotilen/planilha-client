@@ -3,7 +3,7 @@
   <div class="main">
     <h1 class="titulo">Receita</h1>
     <div class="receita">
-      <app-lista [list]="lista"></app-lista>
+      <app-lista [list]="lista"  [funcao]="openModalEditRecipe"></app-lista>
       <canvas id="pizza" ></canvas>
       <div class="botoes">
         <button class="botao green" (click)="openModalRecipe()">Criar Receita</button>

@@ -54,7 +54,7 @@ export class DespesaComponent {
         let dataAtual = new Date().getMonth() + 1
 
         if (mes == dataAtual) {
-          this.lista.push({ nome: `${expense.name}`, valor: Number(expense.value), data: `${diaFormatado}/${mesFormatado}/${ano}` })
+          this.lista.push({id:Number(expense.id) , nome: `${expense.name}`, valor: Number(expense.value), data: `${diaFormatado}/${mesFormatado}/${ano}` })
         }
       })
     })
@@ -78,7 +78,7 @@ export class DespesaComponent {
         let dataAtual = new Date().getMonth() + 1
 
         if (mes <= dataAtual) {
-          this.listaFixa.push({ nome: `${expense.name}`, valor: Number(expense.value), data: `${diaFormatado}/${mesFormatado}/${ano}` })
+          this.listaFixa.push({id:Number(expense.id) , nome: `${expense.name}`, valor: Number(expense.value), data: `${diaFormatado}/${mesFormatado}/${ano}` })
         }
       })
     })

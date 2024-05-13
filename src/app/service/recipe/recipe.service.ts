@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Recipe, RecipeArray } from './recipe';
+import { OneRecipe, Recipe, RecipeArray } from './recipe';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -18,5 +18,9 @@ export class RecipeService {
 
   postRecipe(recipe: Recipe): Observable<Recipe>{
     return this.http.post<Recipe>(this.url, recipe)
+  }
+
+  getOneRecipe(id: number): Observable<OneRecipe>{
+    return this.http.get<OneRecipe>(this.url + "/" + id)
   }
 }

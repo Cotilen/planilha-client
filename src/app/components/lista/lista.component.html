@@ -8,12 +8,13 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let dados of list">
-        <td>{{dados.nome}}</td>
-        <td [ngStyle]="{'color': color}">{{dados.valor}}</td>
-        <td>{{dados.data}}</td>
+      <tr id={{dados.id}} *ngFor="let dados of list" (click)="funcao(dados.id)">
+          <td>{{dados.nome}}</td>
+          <td [ngStyle]="{'color': color}">{{dados.valor}}</td>
+          <td>{{dados.data}}</td>
       </tr>
     </tbody>
   </table>
 
 </div>
+
