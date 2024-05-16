@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { Recipe } from '../../../service/recipe/recipe';
-import { ModalReference } from '@developer-partners/ngx-modal-dialog';
+import { ModalReference, ModalService } from '@developer-partners/ngx-modal-dialog';
 import { ToastrService } from 'ngx-toastr';
 import { NgForm } from '@angular/forms';
+import { ConfimacaoComponent } from '../confimacao/confimacao.component';
+import { RecipeService } from '../../../service/recipe/recipe.service';
 
 @Component({
   selector: 'app-edit-recipe',
@@ -12,7 +14,7 @@ import { NgForm } from '@angular/forms';
 export class EditRecipeComponent {
 
   receita: Recipe = {
-    name: 'Cleiton',
+    name: 'Receita',
     value: '1000',
     dateRecipe: '20/01/2001'
   }
@@ -20,30 +22,56 @@ export class EditRecipeComponent {
 
   constructor(
     private modalRef: ModalReference<{}>,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private modal: ModalService,
+    private service: RecipeService
   ) { }
 
+  id: any
   nome: any
   value: any
   data: any
 
   ngOnInit(): void {
+    this.id = localStorage.getItem('recipeId')
     this.nome = localStorage.getItem('recipeName')
     this.value = localStorage.getItem('recipeValue')
-    const partesData = localStorage.getItem('recipeDate')?.split('/')
+    console.log(localStorage.getItem('recipeDate'));
 
-    // partesData ? this.data = new Date(partesData[3] + "-" + partesData[2] + "-" + partesData[1]). : this.data = "0000/00/00"
+    const partesDataRaw = localStorage.getItem('recipeDate');
+    const partesData = partesDataRaw ? partesDataRaw.split('/') : null;
 
-    console.log(this.data);
+    if (partesData) {
+      const ano = partesData[2]
+      const mes = partesData[1]
+      const dia = partesData[0]
 
-
+      this.data = `${ano}-${mes}-${dia}`
+    }
   }
 
-  cadastrar(form: NgForm){
+  editar(form: NgForm){
+    this.receita.name = form.value.name
+    this.receita.value = form.value.valor
+    this.receita.dateRecipe = form.value.date
+
+    this.service.patchRecipe(this.id, this.receita).subscribe((result =>{
+      this.modalRef.closeSuccess(true)
+    }))
   }
 
   cancelar(){
     this.modalRef.cancel()
   }
 
+  excluir(){
+    this.modal.show(ConfimacaoComponent,{
+      title: 'Excluir Receita',
+    }).result()
+      .subscribe((result: any) =>{
+        if(result){
+          this.modalRef.closeSuccess(true)
+        }
+      })
+  }
 }

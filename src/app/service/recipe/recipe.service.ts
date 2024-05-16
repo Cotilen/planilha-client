@@ -23,4 +23,12 @@ export class RecipeService {
   getOneRecipe(id: number): Observable<OneRecipe>{
     return this.http.get<OneRecipe>(this.url + "/" + id)
   }
+
+  deleteRecipe(id: number): Observable<OneRecipe>{
+    return this.http.delete<OneRecipe>(this.url + "/" + id)
+  }
+
+  patchRecipe(id: number, recipe: Recipe): Observable<Recipe>{
+    return this.http.patch<Recipe>(this.url + "/" + id, recipe)
+  }
 }

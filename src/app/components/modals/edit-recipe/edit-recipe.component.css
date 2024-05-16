@@ -23,8 +23,8 @@ input{
 .botoes{
   max-width: 500px;
   display: flex;
-  justify-content: space-between;
   margin-top: 20px;
+  gap: 10px;
 }
 
 button{
@@ -32,7 +32,11 @@ button{
   height: 30px;
 }
 
-.cancelar{
+.btn-excluir{
+  padding-right: 50px;
+}
+
+.cancelar, .excluir{
   background-color: var(--red-color);
 }
 

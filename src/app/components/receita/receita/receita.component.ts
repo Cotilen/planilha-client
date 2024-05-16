@@ -254,9 +254,9 @@ export class ReceitaComponent {
         title: 'Editar Receita',
       }).result()
         .subscribe((result: any) =>{
-
-          console.log(result);
-
+          if(result){
+            window.location.reload()
+          }
         })
        }))
   }
