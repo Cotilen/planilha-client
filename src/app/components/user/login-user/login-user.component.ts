@@ -55,7 +55,5 @@ export class LoginUserComponent {
     ? '../../../../assets/img/eye.png'
     : '../../../../assets/img/eye-slash.png'
 
-    console.log(eye.src);
-
   }
 }

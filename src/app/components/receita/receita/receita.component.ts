@@ -9,6 +9,7 @@ import { ModalService } from '@developer-partners/ngx-modal-dialog';
 import { CreateRecipeComponent } from '../../modals/create-recipe/create-recipe.component';
 import { CreateRecipefixedComponent } from '../../modals/create-recipefixed/create-recipefixed.component';
 import { EditRecipeComponent } from '../../modals/edit-recipe/edit-recipe.component';
+import { EditRecipefixedComponent } from '../../modals/edit-recipefixed/edit-recipefixed.component';
 
 @Component({
   selector: 'app-receita',
@@ -60,12 +61,13 @@ export class ReceitaComponent {
   listRecipeFixed() {
 
     this.recipeService.getRecipes(this.id).subscribe(recipes => {
+
       recipes.recipe.forEach(recipe => {
         const partesData = recipe.dateRecipe.split('/');
         const date = new Date(partesData[0])
 
         let gmt = addHours(date, 3)
-        let dia = gmt.getDay()
+        let dia = gmt.getDate()
         let mes = gmt.getMonth() + 1
         let ano = gmt.getFullYear()
 
@@ -210,7 +212,6 @@ export class ReceitaComponent {
       .subscribe((result: any) =>{
         const recipe: Recipe = result as Recipe;
 
-        console.log(recipe);
         var receita = {
           id_user:this.id ,
           name: result.name,
@@ -244,7 +245,6 @@ export class ReceitaComponent {
 
   openModalEditRecipe = (id: number) => {
     this.service.getOneRecipe(id).subscribe((result =>{
-      console.log(result);
       localStorage.setItem('recipeName', `${result.recipe.name}`)
       localStorage.setItem('recipeId', `${result.recipe.id}`)
       localStorage.setItem('recipeDate', `${result.recipe.dateRecipe}`)
@@ -252,6 +252,27 @@ export class ReceitaComponent {
 
       this.modal.show(EditRecipeComponent,{
         title: 'Editar Receita',
+      }).result()
+        .subscribe((result: any) =>{
+          if(result){
+            window.location.reload()
+          }
+        })
+       }))
+  }
+
+  openModalEditRecipeFixed = (id: number) => {
+    this.recipeService.getOneRecipe(id).subscribe((result =>{
+      console.log(result);
+      localStorage.setItem('recipeName', `${result.recipe.name}`)
+      localStorage.setItem('recipeId', `${result.recipe.id}`)
+      localStorage.setItem('recipeDate', `${result.recipe.dateRecipe}`)
+      localStorage.setItem('recipeValue', `${result.recipe.value}`)
+
+      localStorage.setItem('recipeFinalDate', `${result.recipe.finalDate}`)
+
+      this.modal.show(EditRecipefixedComponent,{
+        title: 'Editar Receita Fixa',
       }).result()
         .subscribe((result: any) =>{
           if(result){

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { FixedRecipe, FixedRecipeArray } from './fixedRecipe';
+import { FixedRecipe, FixedRecipeArray, OneRecipeFixed } from './fixedRecipe';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -18,5 +18,17 @@ export class FixedrecipeService {
 
   postRecipe(recipe: FixedRecipe): Observable<FixedRecipe>{
     return this.http.post<FixedRecipe>(this.url, recipe)
+  }
+
+  getOneRecipe(id: number): Observable<OneRecipeFixed>{
+    return this.http.get<OneRecipeFixed>(this.url + "/" + id)
+  }
+
+  patchRecipe(id: number, recipe: FixedRecipe): Observable<FixedRecipe>{
+    return this.http.patch<FixedRecipe>(this.url + "/" + id, recipe)
+  }
+
+  deleteRecipe(id: number): Observable<OneRecipeFixed>{
+    return this.http.delete<OneRecipeFixed>(this.url + "/" + id)
   }
 }

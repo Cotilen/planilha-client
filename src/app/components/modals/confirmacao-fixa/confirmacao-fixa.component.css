@@ -1,0 +1,26 @@
+main{
+  height: 80px;
+  color: white;
+}
+
+
+.botoes{
+  max-width: 500px;
+  display: flex;
+  margin-top: 20px;
+  gap: 10px;
+  justify-content: center;
+}
+
+button{
+  width: 100px;
+  height: 30px;
+}
+
+.cancelar{
+  background-color: var(--red-color);
+}
+
+.salvar{
+  background-color: var(--green-color);
+}

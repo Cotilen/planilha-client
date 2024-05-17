@@ -1,1 +1,27 @@
-<p>edit-recipefixed works!</p>
+<main>
+  <form class="form" id="form" #f="ngForm" (ngSubmit)="editar(f)">
+    <div class="input">
+      <label for="nome">Nome</label>
+      <input type="text" name="name" id="name" [(ngModel)]="nome" ngModel required minlength="2" #name="ngModel" />
+    </div>
+    <div class="input">
+      <label for="valor">Valor</label>
+      <input type="text" name="valor" id="valor" [(ngModel)]="value" ngModel required #valor="ngModel" />
+    </div>
+    <div class="input">
+      <label for="data">Data Inicial</label>
+      <input type="date" name="date" id="date" [(ngModel)]="data" ngModel required #date="ngModel" />
+    </div>
+    <div class="input">
+      <label for="data">Data Final</label>
+      <input type="date" name="finalDate" id="finalDate" [(ngModel)]="finalDate" ngModel required #final="ngModel" />
+    </div>
+    <div class="botoes">
+      <div class="btn-excluir">
+        <button type="button" class="excluir" (click)="excluir()">Excluir</button>
+      </div>
+      <button type="button" class="cancelar" (click)="cancelar()">Cancelar</button>
+      <button type="submit" class="salvar">Salvar</button>
+    </div>
+  </form>
+</main>

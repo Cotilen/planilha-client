@@ -26,6 +26,8 @@ import { CreateExpenseComponent } from './components/modals/create-expense/creat
 import { CreateExpensefixedComponent } from './components/modals/create-expensefixed/create-expensefixed.component';
 import { EditRecipeComponent } from './components/modals/edit-recipe/edit-recipe.component';
 import { ConfimacaoComponent } from './components/modals/confimacao/confimacao.component';
+import { EditRecipefixedComponent } from './components/modals/edit-recipefixed/edit-recipefixed.component';
+import { ConfirmacaoFixaComponent } from './components/modals/confirmacao-fixa/confirmacao-fixa.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,8 @@ import { ConfimacaoComponent } from './components/modals/confimacao/confimacao.c
     CreateExpensefixedComponent,
     EditRecipeComponent,
     ConfimacaoComponent,
+    EditRecipefixedComponent,
+    ConfirmacaoFixaComponent,
   ],
   imports: [
     BrowserModule,

@@ -9,3 +9,7 @@ export interface FixedRecipe {
 export interface FixedRecipeArray {
   recipe: FixedRecipe[]
 }
+
+export interface OneRecipeFixed{
+  recipe: FixedRecipe
+}
