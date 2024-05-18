@@ -4,7 +4,12 @@ export interface FixedExpense {
   description?: string,
   value?: number,
   dateExpense: string,
+  finalDate?: string
   id_category?: number
+}
+
+export interface OneExpense {
+  expense: FixedExpense
 }
 
 export interface FixedExpenseArray {

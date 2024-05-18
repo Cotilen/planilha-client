@@ -1,0 +1,37 @@
+<main>
+  <form class="form" id="form" #f="ngForm" (ngSubmit)="editar(f)">
+    <div class="input">
+      <label for="nome">Nome</label>
+      <input type="text" name="name" id="name" [(ngModel)]="nome" ngModel required minlength="2" #name="ngModel" />
+    </div>
+    <div class="input">
+      <label for="valor">Valor</label>
+      <input type="number" name="valor" id="valor" [(ngModel)]="value" ngModel required #valor="ngModel" />
+    </div>
+    <div class="input">
+      <label for="descricao">Descrição</label>
+      <textarea name="description" id="description" [(ngModel)]="descricao"  ngModel required minlength="2" #description="ngModel"></textarea>
+    </div>
+    <div class="input">
+      <label for="category">Categoria</label>
+      <select id="categorias" name="category" [(ngModel)]="idCategory" ngModel required #category="ngModel" >
+        <option *ngFor="let dados of categorias" value="{{dados.id}}">{{dados.name}}</option>
+      </select>
+    </div>
+    <div class="input">
+      <label for="data">Data Inicial</label>
+      <input type="date" name="date" id="date" [(ngModel)]="data" ngModel required #date="ngModel" />
+    </div>
+    <div class="input">
+      <label for="data">Data Final</label>
+      <input type="date" name="dateFinal" id="dateFinal" [(ngModel)]="dataFinal" ngModel required #final="ngModel" />
+    </div>
+    <div class="botoes">
+      <div class="btn-excluir">
+        <button type="button" class="excluir" (click)="excluir()">Excluir</button>
+      </div>
+      <button type="button" class="cancelar" (click)="cancelar()">Cancelar</button>
+      <button type="submit" class="salvar">Salvar</button>
+    </div>
+  </form>
+</main>

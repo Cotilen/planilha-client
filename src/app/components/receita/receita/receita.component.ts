@@ -5,11 +5,11 @@ import { ItemLista } from '../../../service/lista';
 import { Chart } from 'chart.js';
 import { FixedrecipeService } from '../../../service/fixedrecipe/fixedrecipe.service';
 import { addHours } from 'date-fns';
-import { ModalService } from '@developer-partners/ngx-modal-dialog';
 import { CreateRecipeComponent } from '../../modals/receita/criar-receita/create-recipe.component';
 import { CreateRecipefixedComponent } from '../../modals/receita-fixa/criar-receita-fixa/create-recipefixed.component';
 import { EditRecipeComponent } from '../../modals/receita/editar-receita/edit-recipe.component';
 import { EditRecipefixedComponent } from '../../modals/receita-fixa/editar-receita-fixa/edit-recipefixed.component';
+import { ModalService } from '@developer-partners/ngx-modal-dialog';
 
 @Component({
   selector: 'app-receita',

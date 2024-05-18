@@ -1,0 +1,56 @@
+main{
+  height: 520px;
+}
+
+.form{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  color: var(--red-color);
+}
+
+.input{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+input{
+  height: 30px;
+  max-width: 500px;
+}
+
+.botoes{
+  max-width: 500px;
+  display: flex;
+  margin-top: 10px;
+  gap: 10px;
+}
+
+button{
+  width: 100px;
+  height: 30px;
+}
+
+.btn-excluir{
+  padding-right: 50px;
+}
+
+.cancelar, .excluir{
+  background-color: var(--red-color);
+}
+
+.salvar{
+  background-color: var(--green-color);
+}
+
+#description{
+  height: 100px;
+  max-width: 500px;
+}
+
+#categorias{
+  height: 30px;
+  max-width: 500px;
+}
+

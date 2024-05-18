@@ -27,6 +27,10 @@ import { EditRecipeComponent } from './components/modals/receita/editar-receita/
 import { ConfimacaoComponent } from './components/modals/receita/confirmacao-receita/confimacao.component';
 import { EditRecipefixedComponent } from './components/modals/receita-fixa/editar-receita-fixa/edit-recipefixed.component';
 import { ConfirmacaoFixaComponent } from './components/modals/receita-fixa/confirmacao-receita-fixa/confirmacao-fixa.component';
+import { EditarDespesaComponent } from './components/modals/despesa/editar-despesa/editar-despesa.component';
+import { EditarDespesaFixaComponent } from './components/modals/despesa-fixa/editar-despesa-fixa/editar-despesa-fixa.component';
+import { ConfirmacaoDespesaFixaComponent } from './components/modals/despesa-fixa/confirmacao-despesa/confirmacao-despesa.component';
+import { ConfirmacaoDespesaComponent } from './components/modals/despesa/confirmacao-despesa/confirmacao-despesa.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +53,10 @@ import { ConfirmacaoFixaComponent } from './components/modals/receita-fixa/confi
     ConfimacaoComponent,
     EditRecipefixedComponent,
     ConfirmacaoFixaComponent,
+    EditarDespesaComponent,
+    EditarDespesaFixaComponent,
+    ConfirmacaoDespesaFixaComponent,
+    ConfirmacaoDespesaComponent
   ],
   imports: [
     BrowserModule,

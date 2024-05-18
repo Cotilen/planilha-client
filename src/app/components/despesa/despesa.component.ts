@@ -4,10 +4,12 @@ import { addHours } from 'date-fns';
 import { ItemLista } from '../../service/lista';
 import { Chart } from 'chart.js';
 import { FixedexpenseService } from '../../service/fixedexpense/fixedexpense.service';
-import { ModalService } from '@developer-partners/ngx-modal-dialog';
 import { CreateExpenseComponent } from '../modals/despesa/criar-despesa/create-expense.component';
 import { Expense } from '../../service/expense/expense';
 import { CreateExpensefixedComponent } from '../modals/despesa-fixa/criar-despesa-fixa/create-expensefixed.component';
+import { EditarDespesaComponent } from '../modals/despesa/editar-despesa/editar-despesa.component';
+import { ModalService } from '@developer-partners/ngx-modal-dialog';
+import { EditarDespesaFixaComponent } from '../modals/despesa-fixa/editar-despesa-fixa/editar-despesa-fixa.component';
 
 @Component({
   selector: 'app-despesa',
@@ -20,7 +22,7 @@ export class DespesaComponent {
     private expense: ExpenseService,
     private fixedExpense: FixedexpenseService,
     private modal: ModalService
-  ){}
+  ) { }
 
   ngOnInit(): void {
     this.listExpense()
@@ -43,7 +45,7 @@ export class DespesaComponent {
         const date = new Date(partesData[0])
 
         let gmt = addHours(date, 3)
-        let dia = gmt.getDay()
+        let dia = gmt.getDate()
         let mes = gmt.getMonth() + 1
         let ano = gmt.getFullYear()
 
@@ -53,7 +55,7 @@ export class DespesaComponent {
         let dataAtual = new Date().getMonth() + 1
 
         if (mes == dataAtual) {
-          this.lista.push({id:Number(expense.id) , nome: `${expense.name}`, valor: Number(expense.value), data: `${diaFormatado}/${mesFormatado}/${ano}` })
+          this.lista.push({ id: Number(expense.id), nome: `${expense.name}`, valor: Number(expense.value), data: `${diaFormatado}/${mesFormatado}/${ano}` })
         }
       })
     })
@@ -67,7 +69,7 @@ export class DespesaComponent {
         const date = new Date(partesData[0])
 
         let gmt = addHours(date, 3)
-        let dia = gmt.getDay()
+        let dia = gmt.getDate()
         let mes = gmt.getMonth() + 1
         let ano = gmt.getFullYear()
 
@@ -77,13 +79,13 @@ export class DespesaComponent {
         let dataAtual = new Date().getMonth() + 1
 
         if (mes <= dataAtual) {
-          this.listaFixa.push({id:Number(expense.id) , nome: `${expense.name}`, valor: Number(expense.value), data: `${diaFormatado}/${mesFormatado}/${ano}` })
+          this.listaFixa.push({ id: Number(expense.id), nome: `${expense.name}`, valor: Number(expense.value), data: `${diaFormatado}/${mesFormatado}/${ano}` })
         }
       })
     })
   }
 
-  valueChart(){
+  valueChart() {
     let value = [0]
     value.pop()
 
@@ -204,15 +206,15 @@ export class DespesaComponent {
     }
   }
 
-  openModalExpense(){
-    this.modal.show(CreateExpenseComponent,{
+  openModalExpense() {
+    this.modal.show(CreateExpenseComponent, {
       title: 'Criar Despesa',
     }).result()
-      .subscribe((result: any) =>{
+      .subscribe((result: any) => {
         const expense: Expense = result as Expense;
 
         var despesa = {
-          id_user: this.id ,
+          id_user: this.id,
           name: result.name,
           value: result.valor,
           dateExpense: result.date,
@@ -220,30 +222,72 @@ export class DespesaComponent {
           description: result.description
         }
 
-        this.expense.postExpenses(despesa).subscribe(result =>{
+        this.expense.postExpenses(despesa).subscribe(result => {
 
           window.location.reload();
         })
       })
   }
 
-  openModalExpenseFixed(){
-    this.modal.show(CreateExpensefixedComponent,{
+  openModalExpenseFixed() {
+    this.modal.show(CreateExpensefixedComponent, {
       title: 'Criar Despesa Fixa',
     }).result()
-      .subscribe((result: any) =>{
+      .subscribe((result: any) => {
         const expense: Expense = result as Expense;
         var despesa = {
-          id_user:this.id ,
+          id_user: this.id,
           name: result.name,
           value: result.valor,
           dateExpense: result.date,
           id_category: Number(result.category),
           description: result.description
         }
-        this.fixedExpense.postExpenses(despesa).subscribe((result) =>{
+        this.fixedExpense.postExpenses(despesa).subscribe((result) => {
           window.location.reload();
         })
       })
+  }
+
+  openModalEditExpense = (id: number) => {
+    this.expense.getOneExpense(id).subscribe(result => {
+      localStorage.setItem("expenseDate",result.expense.dateExpense)
+      localStorage.setItem("expenseDescription",`${result.expense.description}`)
+      localStorage.setItem("expenseId",`${result.expense.id}`)
+      localStorage.setItem("expenseCategory",`${result.expense.id_category}`)
+      localStorage.setItem("expenseName",`${result.expense.name}`)
+      localStorage.setItem("expenseValue",`${result.expense.value}`)
+      this.modal.show(EditarDespesaComponent,
+        {
+          title: 'Editar Despesa',
+        }).result().subscribe((result) => {
+          if (result) {
+            window.location.reload()
+          }
+        })
+    })
+  }
+
+  openModalEditExpenseFixed = (id: number) => {
+    this.fixedExpense.getOneExpense(id).subscribe(result => {
+      localStorage.setItem("fixedExpenseDate",result.expense.dateExpense)
+      localStorage.setItem("fixedExpenseDescription",`${result.expense.description}`)
+      localStorage.setItem("fixedExpenseId",`${result.expense.id}`)
+      localStorage.setItem("fixedExpenseCategory",`${result.expense.id_category}`)
+      localStorage.setItem("fixedExpenseName",`${result.expense.name}`)
+      localStorage.setItem("fixedExpenseValue",`${result.expense.value}`)
+      localStorage.setItem("fixedExpenseFinalDate",`${result.expense.finalDate}`)
+
+      console.log(result);
+
+      this.modal.show(EditarDespesaFixaComponent,
+        {
+          title: 'Editar Despesa Fixa',
+        }).result().subscribe((result) => {
+          if (result) {
+            window.location.reload()
+          }
+        })
+    })
   }
 }

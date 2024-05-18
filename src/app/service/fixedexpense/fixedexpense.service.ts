@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { FixedExpense, FixedExpenseArray } from './fixedexpense';
+import { FixedExpense, FixedExpenseArray, OneExpense } from './fixedexpense';
 
 @Injectable({
   providedIn: 'root'
@@ -18,5 +18,17 @@ export class FixedexpenseService {
 
   postExpenses(expense: FixedExpense): Observable<FixedExpense>{
     return this.http.post<FixedExpense>(this.url, expense)
+  }
+
+  getOneExpense(id: number): Observable<OneExpense>{
+    return this.http.get<OneExpense>(this.url + "/" + id)
+  }
+
+  deleteExpense(id: number): Observable<OneExpense>{
+    return this.http.delete<OneExpense>(this.url + "/" + id)
+  }
+
+  patchExpense(id: number, expense: FixedExpense): Observable<FixedExpense>{
+    return this.http.patch<FixedExpense>(this.url + "/" + id, expense)
   }
 }

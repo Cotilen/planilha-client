@@ -36,7 +36,6 @@ export class EditRecipeComponent {
     this.id = localStorage.getItem('recipeId')
     this.nome = localStorage.getItem('recipeName')
     this.value = localStorage.getItem('recipeValue')
-    console.log(localStorage.getItem('recipeDate'));
 
     const partesDataRaw = localStorage.getItem('recipeDate');
     const partesData = partesDataRaw ? partesDataRaw.split('/') : null;

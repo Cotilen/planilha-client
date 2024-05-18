@@ -10,3 +10,7 @@ export interface Expense {
 export interface ExpenseArray {
   expense: Expense[]
 }
+
+export interface OneExpense {
+  expense: Expense
+}

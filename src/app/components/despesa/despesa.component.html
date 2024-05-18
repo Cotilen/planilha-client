@@ -2,23 +2,27 @@
   <app-header></app-header>
   <div class="main">
     <h1 class="titulo">Despesa</h1>
-      <div class="despesa">
-        <app-lista [list]="lista" color="var(--red-color)"></app-lista>
-        <canvas id="pizza"></canvas>
-        <div class="botoes">
-          <button class="botao red" (click)="openModalExpense()">Criar Despesa</button>
-          <button class="botao orange" (click)="openModalExpenseFixed()">Criar Despesa Fixa</button>
-        </div>
-  </div>
+    <div class="despesa">
+      <app-lista [list]="lista" [funcao]="openModalEditExpense" color="var(--red-color)"></app-lista>
+      <canvas id="pizza"></canvas>
+      <div class="botoes">
+        <button class="botao red" (click)="openModalExpense()">Criar Despesa</button>
+        <button class="botao orange" (click)="openModalExpenseFixed()">Criar Despesa Fixa</button>
+      </div>
+    </div>
 
-  <h1 class="titulo">Receita Fixa</h1>
-  <div class="despesa-fixa">
-    <app-lista [list]="listaFixa" color="var(--orange-color)"></app-lista>
-    <div class="retangulo-valores">
-      <app-valor-retangular title="Despesas" value="{{value}}" img="../../../assets/img/retangulo-receita.png" color="var(--red-color)"></app-valor-retangular>
-      <app-valor-retangular title="Despesas Fixas" value="{{valueFixed}}" img="../../../assets/img/retangulo-receita.png" color="var(--orange-color)"></app-valor-retangular>
-      <app-valor-retangular title="Despesas Unificadas" img="../../../assets/img/astec.png" color="var(--orange-color)"></app-valor-retangular>
-      <app-valor-retangular title="Total" value="{{total}}" img="../../../assets/img/balance.png" color="var(--red-color)"></app-valor-retangular>
+    <h1 class="titulo">Receita Fixa</h1>
+    <div class="despesa-fixa">
+      <app-lista [list]="listaFixa" [funcao]="openModalEditExpenseFixed" color="var(--orange-color)"></app-lista>
+      <div class="retangulo-valores">
+        <app-valor-retangular title="Despesas" value="{{value}}" img="../../../assets/img/retangulo-receita.png"
+          color="var(--red-color)"></app-valor-retangular>
+        <app-valor-retangular title="Despesas Fixas" value="{{valueFixed}}"
+          img="../../../assets/img/retangulo-receita.png" color="var(--orange-color)"></app-valor-retangular>
+        <app-valor-retangular title="Despesas Unificadas" img="../../../assets/img/astec.png"
+          color="var(--orange-color)"></app-valor-retangular>
+        <app-valor-retangular title="Total" value="{{total}}" img="../../../assets/img/balance.png"
+          color="var(--red-color)"></app-valor-retangular>
+      </div>
     </div>
   </div>
-</div>

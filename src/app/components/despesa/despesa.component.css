@@ -98,11 +98,12 @@
   }
 
   .main{
-    padding-left: 20px;
+    padding-left: 0px;
   }
 
-  .receita, .receita-fixa{
+  .despesa, .despesa-fixa{
     gap: 25px;
+    padding-left: 20px;
   }
 
   #pizza{
