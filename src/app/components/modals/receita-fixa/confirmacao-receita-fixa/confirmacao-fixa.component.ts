@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { ModalReference } from '@developer-partners/ngx-modal-dialog';
 import { ToastrService } from 'ngx-toastr';
-import { RecipeService } from '../../../service/recipe/recipe.service';
-import { FixedrecipeService } from '../../../service/fixedrecipe/fixedrecipe.service';
+import { FixedrecipeService } from '../../../../service/fixedrecipe/fixedrecipe.service';
 
 @Component({
   selector: 'app-confirmacao-fixa',

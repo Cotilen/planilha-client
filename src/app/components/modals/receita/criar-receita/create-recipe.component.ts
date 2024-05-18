@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ModalReference } from '@developer-partners/ngx-modal-dialog';
-import { Recipe } from '../../../service/recipe/recipe';
 import { ToastrService } from 'ngx-toastr';
+import { Recipe } from '../../../../service/recipe/recipe';
 
 @Component({
   selector: 'app-create-recipe',

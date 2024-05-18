@@ -5,10 +5,9 @@ import { ItemLista } from '../../service/lista';
 import { Chart } from 'chart.js';
 import { FixedexpenseService } from '../../service/fixedexpense/fixedexpense.service';
 import { ModalService } from '@developer-partners/ngx-modal-dialog';
-import { CreateExpenseComponent } from '../modals/create-expense/create-expense.component';
+import { CreateExpenseComponent } from '../modals/despesa/criar-despesa/create-expense.component';
 import { Expense } from '../../service/expense/expense';
-import { CreateRecipefixedComponent } from '../modals/create-recipefixed/create-recipefixed.component';
-import { CreateExpensefixedComponent } from '../modals/create-expensefixed/create-expensefixed.component';
+import { CreateExpensefixedComponent } from '../modals/despesa-fixa/criar-despesa-fixa/create-expensefixed.component';
 
 @Component({
   selector: 'app-despesa',

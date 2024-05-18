@@ -6,10 +6,10 @@ import { Chart } from 'chart.js';
 import { FixedrecipeService } from '../../../service/fixedrecipe/fixedrecipe.service';
 import { addHours } from 'date-fns';
 import { ModalService } from '@developer-partners/ngx-modal-dialog';
-import { CreateRecipeComponent } from '../../modals/create-recipe/create-recipe.component';
-import { CreateRecipefixedComponent } from '../../modals/create-recipefixed/create-recipefixed.component';
-import { EditRecipeComponent } from '../../modals/edit-recipe/edit-recipe.component';
-import { EditRecipefixedComponent } from '../../modals/edit-recipefixed/edit-recipefixed.component';
+import { CreateRecipeComponent } from '../../modals/receita/criar-receita/create-recipe.component';
+import { CreateRecipefixedComponent } from '../../modals/receita-fixa/criar-receita-fixa/create-recipefixed.component';
+import { EditRecipeComponent } from '../../modals/receita/editar-receita/edit-recipe.component';
+import { EditRecipefixedComponent } from '../../modals/receita-fixa/editar-receita-fixa/edit-recipefixed.component';
 
 @Component({
   selector: 'app-receita',

@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ConfimacaoComponent } from '../confimacao/confimacao.component';
 import { ModalReference, ModalService } from '@developer-partners/ngx-modal-dialog';
 import { ToastrService } from 'ngx-toastr';
-import { RecipeService } from '../../../service/recipe/recipe.service';
 import { addHours } from 'date-fns';
-import { FixedRecipe } from '../../../service/fixedrecipe/fixedRecipe';
-import { FixedrecipeService } from '../../../service/fixedrecipe/fixedrecipe.service';
-import { ConfirmacaoFixaComponent } from '../confirmacao-fixa/confirmacao-fixa.component';
+import { FixedRecipe } from '../../../../service/fixedrecipe/fixedRecipe';
+import { FixedrecipeService } from '../../../../service/fixedrecipe/fixedrecipe.service';
+import { ConfirmacaoFixaComponent } from '../confirmacao-receita-fixa/confirmacao-fixa.component';
 
 @Component({
   selector: 'app-edit-recipefixed',

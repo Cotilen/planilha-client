@@ -1,16 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ModalReference } from '@developer-partners/ngx-modal-dialog';
 import { ToastrService } from 'ngx-toastr';
-import { CategoryService } from '../../../service/category/category.service';
-import { NgForm } from '@angular/forms';
+import { Expense } from '../../../../service/expense/expense';
+import { CategoryService } from '../../../../service/category/category.service';
 
 @Component({
-  selector: 'app-create-expensefixed',
-  templateUrl: './create-expensefixed.component.html',
-  styleUrl: './create-expensefixed.component.css'
+  selector: 'app-create-expense',
+  templateUrl: './create-expense.component.html',
+  styleUrl: './create-expense.component.css'
 })
-export class CreateExpensefixedComponent {
+export class CreateExpenseComponent {
+
   categorias = [{id: 1, name: ""}]
+
+  despesa: Expense = {
+    name: 'Cleiton',
+    dateExpense: '20/01/2001',
+    description: "",
+    value: 1000,
+    id_category: 1
+  }
 
   constructor(
     private modalRef: ModalReference<{}>,

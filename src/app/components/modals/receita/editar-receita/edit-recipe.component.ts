@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { Recipe } from '../../../service/recipe/recipe';
 import { ModalReference, ModalService } from '@developer-partners/ngx-modal-dialog';
 import { ToastrService } from 'ngx-toastr';
 import { NgForm } from '@angular/forms';
-import { ConfimacaoComponent } from '../confimacao/confimacao.component';
-import { RecipeService } from '../../../service/recipe/recipe.service';
+import { Recipe } from '../../../../service/recipe/recipe';
+import { RecipeService } from '../../../../service/recipe/recipe.service';
+import { ConfimacaoComponent } from '../confirmacao-receita/confimacao.component';
 
 @Component({
   selector: 'app-edit-recipe',

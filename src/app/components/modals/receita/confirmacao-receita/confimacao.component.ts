@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ModalReference } from '@developer-partners/ngx-modal-dialog';
 import { ToastrService } from 'ngx-toastr';
-import { RecipeService } from '../../../service/recipe/recipe.service';
+import { RecipeService } from '../../../../service/recipe/recipe.service';
 
 @Component({
   selector: 'app-confimacao',
