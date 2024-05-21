@@ -10,6 +10,7 @@ import { CreateRecipefixedComponent } from '../../modals/receita-fixa/criar-rece
 import { EditRecipeComponent } from '../../modals/receita/editar-receita/edit-recipe.component';
 import { EditRecipefixedComponent } from '../../modals/receita-fixa/editar-receita-fixa/edit-recipefixed.component';
 import { ModalService } from '@developer-partners/ngx-modal-dialog';
+import { ListaUnificadaComponent } from '../lista-unificada/lista-unificada.component';
 
 @Component({
   selector: 'app-receita',
@@ -280,5 +281,13 @@ export class ReceitaComponent {
           }
         })
        }))
+  }
+
+  teste(){
+    this.modal.show(ListaUnificadaComponent,{
+      title: 'Lista Unificada',
+    }).result()
+      .subscribe((result: any) =>{
+      })
   }
 }

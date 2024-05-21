@@ -31,6 +31,7 @@ import { EditarDespesaComponent } from './components/modals/despesa/editar-despe
 import { EditarDespesaFixaComponent } from './components/modals/despesa-fixa/editar-despesa-fixa/editar-despesa-fixa.component';
 import { ConfirmacaoDespesaFixaComponent } from './components/modals/despesa-fixa/confirmacao-despesa/confirmacao-despesa.component';
 import { ConfirmacaoDespesaComponent } from './components/modals/despesa/confirmacao-despesa/confirmacao-despesa.component';
+import { ListaUnificadaComponent } from './components/receita/lista-unificada/lista-unificada.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { ConfirmacaoDespesaComponent } from './components/modals/despesa/confirm
     EditarDespesaComponent,
     EditarDespesaFixaComponent,
     ConfirmacaoDespesaFixaComponent,
-    ConfirmacaoDespesaComponent
+    ConfirmacaoDespesaComponent,
+    ListaUnificadaComponent,
   ],
   imports: [
     BrowserModule,

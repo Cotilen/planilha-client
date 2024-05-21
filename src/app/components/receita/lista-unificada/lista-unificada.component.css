@@ -1,0 +1,50 @@
+.table-container {
+  width: 650px;
+  height: 400px; /* Altura fixa da tabela */
+  overflow-y: auto; /* Adiciona barra de rolagem quando necessário */
+  border: 5px ridge var(--second-color);
+  border-radius: 20px;
+  background-color: var(--second-color);
+  color: #fff;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+}
+
+thead {
+  background-color: var(--background-color);
+}
+
+.table-container::-webkit-scrollbar {
+  width: 0px;
+}
+
+@media (max-width: 1450px) {
+  .table-container{
+    width: 400px;
+    height: 300px;
+  }
+}
+
+@media (max-width: 1360px) {
+  .table-container{
+    width: 400px;
+    height: 250px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .table-container{
+    width: 300px;
+    height: 250px;
+  }
+}
+
+

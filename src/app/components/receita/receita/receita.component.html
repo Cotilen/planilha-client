@@ -16,8 +16,8 @@
       <div class="retangulo-valores">
         <app-valor-retangular title="Receitas" value="{{value}}" img="../../../assets/img/retangulo-receita.png" color="var(--green-color)"></app-valor-retangular>
         <app-valor-retangular title="Receitas Fixas" value="{{valueFixed}}" img="../../../assets/img/retangulo-receita.png" color="var(--orange-color)"></app-valor-retangular>
-        <app-valor-retangular title="Receitas Unificadas" img="../../../assets/img/astec.png" color="var(--orange-color)"></app-valor-retangular>
-        <app-valor-retangular title="Total" value="{{total}}" img="../../../assets/img/balance.png" color="var(--green-color)"></app-valor-retangular>
+        <app-valor-retangular title="Receitas Unificadas" img="../../../assets/img/astec.png" color="var(--orange-color)" (click)="teste()"></app-valor-retangular>
+        <app-valor-retangular title="Total" value="{{total}}" img="../../../assets/img/balance.png" color="var(--green-color)" ></app-valor-retangular>
       </div>
     </div>
   </div>
