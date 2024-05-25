@@ -56,6 +56,11 @@ export class ReceitaComponent {
           this.lista.push({id:Number(recipe.id) ,nome: `${recipe.name}`, valor: Number(recipe.value), data: `${recipe.dateRecipe}` })
         }
       })
+      this.lista.sort((a, b) => {
+        const dataA = this.converteData(a.data);
+        const dataB = this.converteData(b.data);
+        return dataA.getDate() - dataB.getDate(); // Compare as datas como números
+      })
     })
   }
 
@@ -77,11 +82,17 @@ export class ReceitaComponent {
 
         let dataAtual = new Date().getMonth() + 1
 
-        if (mes <= dataAtual) {
+        if (mes == dataAtual) {
           this.listaFixa.push({ id:Number(recipe.id) ,nome: `${recipe.name}`, valor: Number(recipe.value), data: `${diaFormatado}/${mesFormatado}/${ano}` })
         }
       })
+      this.listaFixa.sort((a, b) => {
+        const dataA = this.converteData(a.data);
+        const dataB = this.converteData(b.data);
+        return dataA.getDate() - dataB.getDate(); // Compare as datas como números
+      })
     })
+
   }
 
   valueChart(){
@@ -283,11 +294,21 @@ export class ReceitaComponent {
        }))
   }
 
-  teste(){
+  abrirListaUnificada(){
     this.modal.show(ListaUnificadaComponent,{
       title: 'Lista Unificada',
     }).result()
       .subscribe((result: any) =>{
       })
+  }
+
+  converteData(dataString: any) {
+    const partesData = dataString.split("/");
+
+    const dia = parseInt(partesData[0]);
+    const mes = parseInt(partesData[1]) - 1;
+    const ano = parseInt(partesData[2]);
+
+    return new Date(ano, mes, dia);
   }
 }

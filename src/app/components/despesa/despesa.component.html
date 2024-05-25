@@ -11,7 +11,7 @@
       </div>
     </div>
 
-    <h1 class="titulo">Receita Fixa</h1>
+    <h1 class="titulo">Despesa Fixa</h1>
     <div class="despesa-fixa">
       <app-lista [list]="listaFixa" [funcao]="openModalEditExpenseFixed" color="var(--orange-color)"></app-lista>
       <div class="retangulo-valores">
@@ -20,7 +20,7 @@
         <app-valor-retangular title="Despesas Fixas" value="{{valueFixed}}"
           img="../../../assets/img/retangulo-receita.png" color="var(--orange-color)"></app-valor-retangular>
         <app-valor-retangular title="Despesas Unificadas" img="../../../assets/img/astec.png"
-          color="var(--orange-color)"></app-valor-retangular>
+          color="var(--orange-color)" (click)="abrirListaUnificada()"></app-valor-retangular>
         <app-valor-retangular title="Total" value="{{total}}" img="../../../assets/img/balance.png"
           color="var(--red-color)"></app-valor-retangular>
       </div>

@@ -27,8 +27,8 @@ th, td {
 }
 
 th{
-  max-width:100px;
-  color: var(--green-color);
+  max-width:120px;
+  color: var(--red-color);
 }
 
 thead {
@@ -47,7 +47,7 @@ thead {
 
 .borda{
   width: 230px;
-  border: 4px solid var(--green-color);
+  border: 4px solid var(--red-color);
   border-radius: 50px;
   padding: 5px;
   display: flex;
@@ -61,7 +61,7 @@ thead {
   height: 0;
   border-top: 25px solid transparent;
   border-bottom: 25px solid transparent;
-  border-right:25px solid var(--green-color);
+  border-right:25px solid var(--red-color);
   border-left: 0px;
   background-color: var(--second-color);
 }
@@ -71,7 +71,7 @@ thead {
   height: 0;
   border-top: 25px solid transparent;
   border-bottom: 25px solid transparent;
-  border-left: 25px solid var(--green-color);
+  border-left: 25px solid var(--red-color);
   border-right:25px;
   background-color: var(--second-color);
 }

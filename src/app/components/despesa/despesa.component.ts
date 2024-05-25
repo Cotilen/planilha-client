@@ -10,6 +10,7 @@ import { CreateExpensefixedComponent } from '../modals/despesa-fixa/criar-despes
 import { EditarDespesaComponent } from '../modals/despesa/editar-despesa/editar-despesa.component';
 import { ModalService } from '@developer-partners/ngx-modal-dialog';
 import { EditarDespesaFixaComponent } from '../modals/despesa-fixa/editar-despesa-fixa/editar-despesa-fixa.component';
+import { ListaUnificadaDespesaComponent } from './lista-unificada-despesa/lista-unificada-despesa.component';
 
 @Component({
   selector: 'app-despesa',
@@ -58,6 +59,11 @@ export class DespesaComponent {
           this.lista.push({ id: Number(expense.id), nome: `${expense.name}`, valor: Number(expense.value), data: `${diaFormatado}/${mesFormatado}/${ano}` })
         }
       })
+      this.lista.sort((a, b) => {
+        const dataA = this.converteData(a.data);
+        const dataB = this.converteData(b.data);
+        return dataA.getDate() - dataB.getDate(); // Compare as datas como números
+      })
     })
   }
 
@@ -78,9 +84,14 @@ export class DespesaComponent {
 
         let dataAtual = new Date().getMonth() + 1
 
-        if (mes <= dataAtual) {
+        if (mes == dataAtual) {
           this.listaFixa.push({ id: Number(expense.id), nome: `${expense.name}`, valor: Number(expense.value), data: `${diaFormatado}/${mesFormatado}/${ano}` })
         }
+      })
+      this.listaFixa.sort((a, b) => {
+        const dataA = this.converteData(a.data);
+        const dataB = this.converteData(b.data);
+        return dataA.getDate() - dataB.getDate(); // Compare as datas como números
       })
     })
   }
@@ -289,5 +300,22 @@ export class DespesaComponent {
           }
         })
     })
+  }
+  abrirListaUnificada(){
+    this.modal.show(ListaUnificadaDespesaComponent,{
+      title: 'Lista Unificada',
+    }).result()
+      .subscribe((result: any) =>{
+      })
+  }
+
+  converteData(dataString: any) {
+    const partesData = dataString.split("/");
+
+    const dia = parseInt(partesData[0]);
+    const mes = parseInt(partesData[1]) - 1;
+    const ano = parseInt(partesData[2]);
+
+    return new Date(ano, mes, dia);
   }
 }

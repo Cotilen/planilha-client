@@ -1,48 +1,45 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
+import { addHours } from 'date-fns';
 import { RecipeService } from '../../../service/recipe/recipe.service';
 import { FixedrecipeService } from '../../../service/fixedrecipe/fixedrecipe.service';
-import { addHours } from 'date-fns';
+import { ExpenseService } from '../../../service/expense/expense.service';
+import { FixedexpenseService } from '../../../service/fixedexpense/fixedexpense.service';
+import { CategoryService } from '../../../service/category/category.service';
 
 @Component({
-  selector: 'app-lista-unificada',
-  templateUrl: './lista-unificada.component.html',
-  styleUrl: './lista-unificada.component.css'
+  selector: 'app-lista-unificada-despesa',
+  templateUrl: './lista-unificada-despesa.component.html',
+  styleUrl: './lista-unificada-despesa.component.css'
 })
-export class ListaUnificadaComponent {
+export class ListaUnificadaDespesaComponent {
   id = Number(localStorage.getItem('id'));
-  list = [{ id: 0, nome: "", valor: 0, data: "" }]
-  @Input() color = "var(--green-color)"
-  mes = "Janeiro"
+  list = [{ id: 0, nome: "", valor: 0, data: "" , categoria: ""}]
+  mes = ""
   valorMes = new Date().getMonth() + 1
   year = new Date().getFullYear()
+  category = [{ id: 0, nome: ""}]
 
   constructor(
-    private recipe: RecipeService,
-    private recipeFixed: FixedrecipeService
+    private expense: ExpenseService,
+    private expenseFixed: FixedexpenseService,
+    private categoria: CategoryService
   ) { }
 
   ngOnInit(): void {
+    this.getCategoria()
     this.encherLista(this.id, this.valorMes)
     this.mes = this.getMonthName(this.valorMes)
+    console.log(this.category);
+
   }
 
   encherLista(id: number, mesAtual: number) {
     this.list = []
-    this.recipe.getRecipes(id).subscribe(receita => {
-      receita.recipe.map(result => {
+    this.expense.getExpenses(id).subscribe(despesa => {
+      despesa.expense.map(result => {
         const value = Number(result.value)
-        const partesData = (result.dateRecipe.split('/'))
-
-
-        if (Number(partesData[1]) == mesAtual) {
-          this.list.push({ id: result.id ?? 0, nome: result.name ?? "", valor: value ?? 0, data: result.dateRecipe })
-        }
-      })
-    })
-    this.recipeFixed.getRecipes(id).subscribe(receita => {
-      receita.recipe.map(result => {
-        const value = Number(result.value)
-        const data = new Date(result.dateRecipe)
+        const data = new Date(result.dateExpense)
+        let categoria = {id:0, nome: "" }
 
         let gmt = addHours(data, 3)
         let dia = gmt.getDate()
@@ -52,9 +49,31 @@ export class ListaUnificadaComponent {
         const diaFormatado = (dia < 10) ? `0${dia}` : dia;
         const mesFormatado = (mes < 10) ? `0${mes}` : mes;
 
+        categoria = this.category.find(element => element.id == result.id_category ) ?? {id:0, nome: "" }
 
         if (mes == mesAtual) {
-          this.list.push({ id: result.id ?? 0, nome: result.name ?? "", valor: value ?? 0, data: `${diaFormatado}/${mesFormatado}/${ano}` })
+          this.list.push({ id: result.id ?? 0, nome: result.name ?? "", valor: value ?? 0, data: `${diaFormatado}/${mesFormatado}/${ano}`, categoria: categoria.nome})
+        }
+      })
+    })
+    this.expenseFixed.getExpenses(id).subscribe(despesa => {
+      despesa.expense.map(result => {
+        const value = Number(result.value)
+        const data = new Date(result.dateExpense)
+        let categoria = {id:0, nome: "" }
+
+        let gmt = addHours(data, 3)
+        let dia = gmt.getDate()
+        let mes = gmt.getMonth() + 1
+        let ano = gmt.getFullYear()
+
+        const diaFormatado = (dia < 10) ? `0${dia}` : dia;
+        const mesFormatado = (mes < 10) ? `0${mes}` : mes;
+
+        categoria = this.category.find(element => element.id == result.id_category ) ?? {id:0, nome: "" }
+
+        if (mes == mesAtual) {
+          this.list.push({ id: result.id ?? 0, nome: result.name ?? "", valor: value ?? 0, data: `${diaFormatado}/${mesFormatado}/${ano}`, categoria: categoria.nome })
         }
 
       })
@@ -90,6 +109,14 @@ export class ListaUnificadaComponent {
     }
     this.mes = this.getMonthName(this.valorMes)
     this.encherLista(this.id, this.valorMes)
+  }
+
+  getCategoria(){
+    this.categoria.getCategory().subscribe(result =>{
+      result.category.map(element =>{
+        this.category.push({ id: element.id, nome: element.name })
+      })
+    })
   }
 
 
