@@ -33,7 +33,7 @@ import { ConfirmacaoDespesaFixaComponent } from './components/modals/despesa-fix
 import { ConfirmacaoDespesaComponent } from './components/modals/despesa/confirmacao-despesa/confirmacao-despesa.component';
 import { ListaUnificadaComponent } from './components/receita/lista-unificada/lista-unificada.component';
 import { ListaUnificadaDespesaComponent } from './components/despesa/lista-unificada-despesa/lista-unificada-despesa.component';
-
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,6 +70,7 @@ import { ListaUnificadaDespesaComponent } from './components/despesa/lista-unifi
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     ModalModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

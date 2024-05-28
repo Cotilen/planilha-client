@@ -529,6 +529,7 @@ export class DashboardComponent {
         ]
       },
       options: {
+        indexAxis: 'x',
         responsive: true,
         plugins: {
           legend: {

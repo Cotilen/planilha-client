@@ -2,7 +2,7 @@
   <div class="header">Planilha</div>
   <div class="linha"></div>
 
-  <ul class="lista">
+  <ul class="lista" id="lista">
     <li>
       <a [routerLink]="['/dashboard']">
         <img src="../../assets/img/home.png" alt="">
@@ -35,4 +35,5 @@
       </a>
     </li>
   </ul>
+  <fa-icon class="bars" [icon]="fabars" (click)="abrimenu()" ></fa-icon>
 </div>

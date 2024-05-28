@@ -26,14 +26,14 @@ img{
 
 @media (max-width: 1450px){
   .container{
-    width: 262.5px;
-    height: 150px;
-    gap: 5px;
+    width: 302px;
+    height: 120px;
+    flex-direction: row;
+    gap: 10px;
   }
 
-  img{
-    max-width: 30px;
-    max-height: 30px;
+  p{
+    text-align: center;
   }
 }
 
@@ -49,8 +49,6 @@ img{
     text-align: center;
   }
 
-
-
 }
 
 @media (max-width: 1024px){
@@ -58,5 +56,13 @@ img{
     width: 235px;
     height: 150px;
     gap: 20px;
+  }
+}
+
+@media(max-width: 768px){
+  .container{
+    width: 215px;
+    height: 200px;
+    flex-direction: column;
   }
 }

@@ -91,28 +91,28 @@
   border-radius: 20px;
 }
 
-@media (max-width: 1450px) {
+@media (max-width: 1440px) {
   .container {
     grid-template-columns: 270px auto;
   }
 
   .main {
     display: grid;
-    grid-template-rows: 320px 70px;
+    grid-template-rows: 260px 120px;
   }
 
   .container-retangulos {
     width: 509px;
-    height: 300px;
+    height: 250px;
   }
 
   .grafico {
-    height: 300px;
+    height: 250px;
     width: 457px;
   }
 
   .chartAnual {
-    width: 650px;
+    width: 600px;
   }
 
   #chartAnual {
@@ -121,7 +121,7 @@
   }
 
   .chartTotal {
-    width: 400px;
+    width: 405px;
   }
 }
 
@@ -205,4 +205,109 @@
     height: 300px;
   }
 
+}
+
+
+@media(max-width: 768px) {
+  .container{
+    grid-template-columns: 180px auto;
+  }
+  .main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .start{
+    flex-direction: column;
+    padding: 0;
+    gap: 20px;
+  }
+
+  .valores{
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    gap: 20px;
+  }
+
+  .graficosCheios{
+    flex-direction: column;
+    padding: 0;
+    align-items: center;
+  }
+
+  .header{
+    height: 100vh;
+    position: fixed;
+  }
+
+  .container-retangulos{
+    width: 450px;
+    height: 250px;
+  }
+
+  .grafico{
+    height: 250px;
+    width: 450px;
+  }
+
+  .chartAnual{
+    width: 500px;
+  }
+
+  .chartTotal{
+    width: 500px;
+  }
+}
+
+@media(max-width: 375px){
+  .header{
+      position: relative;
+      height: 50px;
+  }
+
+  .start{
+    align-items: center;
+  }
+
+  .container{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .container-retangulos{
+    flex-direction: column;
+    height: auto;
+    width: 310px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+  }
+
+  .grafico{
+    width: 310px;
+    height: 300px;
+  }
+
+  .valores{
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+
+  .chartAnual{
+    width: 310px;
+  }
+
+  #chartAnual{
+    height: 500px;
+  }
+
+  .chartTotal{
+    width: 310px;
+    height: 250px;
+  }
 }

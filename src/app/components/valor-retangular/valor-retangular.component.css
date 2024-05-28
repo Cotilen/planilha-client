@@ -58,6 +58,27 @@ p{
   p{
     font-size: 1rem;
   }
+}
 
+@media (max-width:768px){
+  .container{
+    width: 200px;
+    height: 100px;
+  }
 
+  p{
+    font-size: 1.7rem;
+    font-weight: bold;
+  }
+
+  h1{
+    font-size: 1.3rem;
+  }
+}
+
+@media(max-width: 320px){
+  .container{
+    width: 250px;
+    height: 130px;
+  }
 }

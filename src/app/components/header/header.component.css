@@ -49,6 +49,9 @@ a{
   gap: 10px;
 }
 
+.bars{
+  display: none;
+}
 @media (max-width: 1450px) {
   .container{
     width: 260px;
@@ -59,4 +62,41 @@ a{
   .container{
     width: 180px;
   }
+}
+
+@media (max-width: 768px) {
+  .container{
+    height: 100%;
+  }
+}
+
+@media(max-width: 375px) {
+  .container{
+    flex-direction: row;
+    height: 50px;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 10px;
+  }
+
+  .header{
+    height: 50px;
+    width: 100px;
+  }
+
+
+  .bars{
+    display: block;
+    font-size: 1.5rem;
+  }
+
+  .lista{
+    display: none;
+  }
+
+  .linha{
+    display: none;
+  }
+
 }
