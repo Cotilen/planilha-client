@@ -17,7 +17,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr id={{dados.id}} *ngFor="let dados of list">
+        <tr id={{dados.id}} *ngFor="let dados of list" [ngStyle]="{'color': dados.color}">
             <td>{{dados.nome}}</td>
             <td >{{dados.valor}}</td>
             <td>{{dados.data}}</td>

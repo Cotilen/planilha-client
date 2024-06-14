@@ -92,7 +92,7 @@ thead {
 
 @media (max-width: 1024px) {
   .table-container{
-    width: 300px;
+    width: 400px;
     height: 250px;
   }
 }

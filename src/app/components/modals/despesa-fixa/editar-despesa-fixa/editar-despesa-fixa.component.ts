@@ -49,7 +49,8 @@ export class EditarDespesaFixaComponent {
     this.idCategory = localStorage.getItem('fixedExpenseCategory')
     this.descricao = localStorage.getItem('fixedExpenseDescription')
 
-    const partesDataRaw = localStorage.getItem('expenseDate');
+    const partesDataRaw = localStorage.getItem('fixedExpenseDate');
+
     const partesData = partesDataRaw ? partesDataRaw.split('/') : null;
 
     if (partesData) {
@@ -57,20 +58,18 @@ export class EditarDespesaFixaComponent {
       const mes = partesData[1]
       const dia = partesData[0]
 
+
       this.data = `${ano}-${mes}-${dia}`
     }
 
     const dataFinal = localStorage.getItem("fixedExpenseFinalDate")
 
-    console.log(dataFinal);
-
     if (dataFinal) {
-      const date = new Date(dataFinal)
+      const date = dataFinal.split('/')
 
-      let gmt = addHours(date, 3)
-      let dia = gmt.getDate()
-      let mes = gmt.getMonth() + 1
-      let ano = gmt.getFullYear()
+      let dia = Number(date[0])
+      let mes = Number(date[1])
+      let ano = Number(date[2])
 
       const diaFormatado = (dia < 10) ? `0${dia}` : dia;
       const mesFormatado = (mes < 10) ? `0${mes}` : mes;

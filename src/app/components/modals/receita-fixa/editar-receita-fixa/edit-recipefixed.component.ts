@@ -43,12 +43,11 @@ export class EditRecipefixedComponent {
     const partesData = localStorage.getItem('recipeDate');
 
     if (partesData) {
-      const data = new Date(partesData)
+      const data =partesData.split('/')
 
-      let gmt = addHours(data, 3)
-      let diaInicial = gmt.getDate()
-      let mesInicial = gmt.getMonth() + 1
-      let anoInicial = gmt.getFullYear()
+      let diaInicial = Number(data[0])
+      let mesInicial = Number(data[1])
+      let anoInicial = Number(data[2])
 
       const diaFormatado = (diaInicial < 10) ? `0${diaInicial}` : diaInicial;
       const mesFormatado = (mesInicial < 10) ? `0${mesInicial}` : mesInicial;
@@ -58,12 +57,11 @@ export class EditRecipefixedComponent {
 
 
     if (dataFinal) {
-      const date = new Date(dataFinal)
+      const date = dataFinal.split('/')
 
-      let gmt = addHours(date, 3)
-      let dia = gmt.getDate()
-      let mes = gmt.getMonth() + 1
-      let ano = gmt.getFullYear()
+      let dia = Number(date[0])
+      let mes = Number(date[1])
+      let ano = Number(date[2])
 
       const diaFormatado = (dia < 10) ? `0${dia}` : dia;
       const mesFormatado = (mes < 10) ? `0${mes}` : mes;

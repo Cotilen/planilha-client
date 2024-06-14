@@ -10,7 +10,7 @@ import { addHours } from 'date-fns';
 })
 export class ListaUnificadaComponent {
   id = Number(localStorage.getItem('id'));
-  list = [{ id: 0, nome: "", valor: 0, data: "" }]
+  list = [{ id: 0, nome: "", valor: 0, data: "", color: "" }]
   @Input() color = "var(--green-color)"
   mes = "Janeiro"
   valorMes = new Date().getMonth() + 1
@@ -35,35 +35,48 @@ export class ListaUnificadaComponent {
 
 
         if (Number(partesData[1]) == mesAtual) {
-          this.list.push({ id: result.id ?? 0, nome: result.name ?? "", valor: value ?? 0, data: result.dateRecipe })
+          this.list.push({ id: result.id ?? 0, nome: result.name ?? "", valor: value ?? 0, data: result.dateRecipe, color:'#01B574' })
         }
       })
     })
     this.recipeFixed.getRecipes(id).subscribe(receita => {
       receita.recipe.map(result => {
         const value = Number(result.value)
-        const data = new Date(result.dateRecipe)
+        const data = result.dateRecipe.split('/')
 
-        let gmt = addHours(data, 3)
-        let dia = gmt.getDate()
-        let mes = gmt.getMonth() + 1
-        let ano = gmt.getFullYear()
+        let dia = Number(data[0])
+        let mes = Number(data[1])
+        let ano = Number(data[2])
 
         const diaFormatado = (dia < 10) ? `0${dia}` : dia;
         const mesFormatado = (mes < 10) ? `0${mes}` : mes;
 
+        if (result.finalDate == null) {
+          if (mes <= mesAtual) {
+            this.list.push({ id: result.id ?? 0, nome: result.name ?? "", valor: value ?? 0, data: `${diaFormatado}/${mesFormatado}/${ano}`, color:'#FB5927' })
+          }
+        } else {
+          const dataFinal = result.finalDate.split('/')
+          if (mes <= mesAtual && Number(dataFinal[1]) >= mesAtual) {
 
-        if (mes == mesAtual) {
-          this.list.push({ id: result.id ?? 0, nome: result.name ?? "", valor: value ?? 0, data: `${diaFormatado}/${mesFormatado}/${ano}` })
+            this.list.push({ id: result.id ?? 0, nome: result.name ?? "", valor: value ?? 0, data: `${diaFormatado}/${mesFormatado}/${ano}`, color:'#FB5927' })
+          }
         }
-
       })
 
       this.list.sort((a, b) => {
         const dataA = this.converteData(a.data);
         const dataB = this.converteData(b.data);
-        return dataA.getDate() - dataB.getDate(); // Compare as datas como números
-      })
+
+        const mesComparacao = dataA.getMonth() - dataB.getMonth();
+
+        if (mesComparacao !== 0) {
+          return mesComparacao;
+        }
+
+        return dataA.getDate() - dataB.getDate();
+      });
+
     })
 
   }

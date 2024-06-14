@@ -13,7 +13,7 @@ import { CategoryService } from '../../../service/category/category.service';
 })
 export class ListaUnificadaDespesaComponent {
   id = Number(localStorage.getItem('id'));
-  list = [{ id: 0, nome: "", valor: 0, data: "" , categoria: ""}]
+  list = [{ id: 0, nome: "", valor: 0, data: "" , categoria: "", color: ""}]
   mes = ""
   valorMes = new Date().getMonth() + 1
   year = new Date().getFullYear()
@@ -29,8 +29,6 @@ export class ListaUnificadaDespesaComponent {
     this.getCategoria()
     this.encherLista(this.id, this.valorMes)
     this.mes = this.getMonthName(this.valorMes)
-    console.log(this.category);
-
   }
 
   encherLista(id: number, mesAtual: number) {
@@ -38,13 +36,13 @@ export class ListaUnificadaDespesaComponent {
     this.expense.getExpenses(id).subscribe(despesa => {
       despesa.expense.map(result => {
         const value = Number(result.value)
-        const data = new Date(result.dateExpense)
+        const data = result.dateExpense.split('/')
+
         let categoria = {id:0, nome: "" }
 
-        let gmt = addHours(data, 3)
-        let dia = gmt.getDate()
-        let mes = gmt.getMonth() + 1
-        let ano = gmt.getFullYear()
+        let dia = Number(data[0])
+        let mes = Number(data[1])
+        let ano = Number(data[2])
 
         const diaFormatado = (dia < 10) ? `0${dia}` : dia;
         const mesFormatado = (mes < 10) ? `0${mes}` : mes;
@@ -52,36 +50,52 @@ export class ListaUnificadaDespesaComponent {
         categoria = this.category.find(element => element.id == result.id_category ) ?? {id:0, nome: "" }
 
         if (mes == mesAtual) {
-          this.list.push({ id: result.id ?? 0, nome: result.name ?? "", valor: value ?? 0, data: `${diaFormatado}/${mesFormatado}/${ano}`, categoria: categoria.nome})
+          this.list.push({ id: result.id ?? 0, nome: result.name ?? "", valor: value ?? 0, data: `${diaFormatado}/${mesFormatado}/${ano}`, categoria: categoria.nome, color: "#F54A4A"})
         }
       })
     })
     this.expenseFixed.getExpenses(id).subscribe(despesa => {
       despesa.expense.map(result => {
         const value = Number(result.value)
-        const data = new Date(result.dateExpense)
+        const data = result.dateExpense.split('/')
+
         let categoria = {id:0, nome: "" }
 
-        let gmt = addHours(data, 3)
-        let dia = gmt.getDate()
-        let mes = gmt.getMonth() + 1
-        let ano = gmt.getFullYear()
+        let dia = Number(data[0])
+        let mes = Number(data[1])
+        let ano = Number(data[2])
 
         const diaFormatado = (dia < 10) ? `0${dia}` : dia;
         const mesFormatado = (mes < 10) ? `0${mes}` : mes;
 
         categoria = this.category.find(element => element.id == result.id_category ) ?? {id:0, nome: "" }
 
-        if (mes == mesAtual) {
-          this.list.push({ id: result.id ?? 0, nome: result.name ?? "", valor: value ?? 0, data: `${diaFormatado}/${mesFormatado}/${ano}`, categoria: categoria.nome })
+        if(result.finalDate == null){
+          if (mes <= mesAtual) {
+            this.list.push({ id: result.id ?? 0, nome: result.name ?? "", valor: value ?? 0, data: `${diaFormatado}/${mesFormatado}/${ano}`, categoria: categoria.nome, color:'#FB5927' })
+          }
+        }else{
+          const dataFinal = result.finalDate.split('/')
+
+          if (mes <= mesAtual && Number(dataFinal[1]) >= mesAtual) {
+            this.list.push({ id: result.id?? 0, nome: result.name?? "", valor: value?? 0, data: `${diaFormatado}/${mesFormatado}/${ano}`, categoria: categoria.nome, color: '#FB5927' })
+          }
         }
+
 
       })
 
       this.list.sort((a, b) => {
         const dataA = this.converteData(a.data);
         const dataB = this.converteData(b.data);
-        return dataA.getDate() - dataB.getDate(); // Compare as datas como números
+
+        const mesComparacao = dataA.getMonth() - dataB.getMonth();
+
+        if (mesComparacao !== 0) {
+            return mesComparacao;
+        }
+
+        return dataA.getDate() - dataB.getDate();
       })
     })
 

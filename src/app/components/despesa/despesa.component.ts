@@ -43,12 +43,9 @@ export class DespesaComponent {
     this.expense.getExpenses(this.id).subscribe(expense => {
       expense.expense.forEach(expense => {
         const partesData = expense.dateExpense.split('/');
-        const date = new Date(partesData[0])
-
-        let gmt = addHours(date, 3)
-        let dia = gmt.getDate()
-        let mes = gmt.getMonth() + 1
-        let ano = gmt.getFullYear()
+        let dia = Number(partesData[0])
+        let mes = Number(partesData[1])
+        let ano = Number(partesData[2])
 
         const diaFormatado = (dia < 10) ? `0${dia}` : dia;
         const mesFormatado = (mes < 10) ? `0${mes}` : mes;
@@ -71,27 +68,41 @@ export class DespesaComponent {
 
     this.fixedExpense.getExpenses(this.id).subscribe(expenses => {
       expenses.expense.forEach(expense => {
-        const partesData = expense.dateExpense.split('/');
-        const date = new Date(partesData[0])
 
-        let gmt = addHours(date, 3)
-        let dia = gmt.getDate()
-        let mes = gmt.getMonth() + 1
-        let ano = gmt.getFullYear()
+        const partesData = expense.dateExpense.split('/');
+        let dia = Number(partesData[0])
+        let mes = Number(partesData[1])
+        let ano = Number(partesData[2])
 
         const diaFormatado = (dia < 10) ? `0${dia}` : dia;
         const mesFormatado = (mes < 10) ? `0${mes}` : mes;
 
         let dataAtual = new Date().getMonth() + 1
 
-        if (mes == dataAtual) {
-          this.listaFixa.push({ id: Number(expense.id), nome: `${expense.name}`, valor: Number(expense.value), data: `${diaFormatado}/${mesFormatado}/${ano}` })
+        if (mes <= dataAtual) {
+          if(expense.finalDate == null){
+            this.listaFixa.push({ id: Number(expense.id), nome: `${expense.name}`, valor: Number(expense.value), data: `${diaFormatado}/${mesFormatado}/${ano}` })
+          }else{
+            const dataFinal = expense.finalDate.split('/')
+
+            if(Number(dataFinal[1]) >= dataAtual){
+              this.listaFixa.push({ id: Number(expense.id), nome: `${expense.name}`, valor: Number(expense.value), data: `${diaFormatado}/${mesFormatado}/${ano}` })
+
+            }
+          }
         }
       })
       this.listaFixa.sort((a, b) => {
         const dataA = this.converteData(a.data);
         const dataB = this.converteData(b.data);
-        return dataA.getDate() - dataB.getDate(); // Compare as datas como números
+
+        const mesComparacao = dataA.getMonth() - dataB.getMonth();
+
+        if (mesComparacao !== 0) {
+            return mesComparacao;
+        }
+
+        return dataA.getDate() - dataB.getDate();
       })
     })
   }
@@ -107,10 +118,7 @@ export class DespesaComponent {
 
       expense.expense.forEach(expense => {
         const partesData = expense.dateExpense.split('/');
-        const date = new Date(partesData[0])
-
-        let gmt = addHours(date, 3)
-        let mes = gmt.getMonth() + 1
+        let mes = Number(partesData[1])
 
         if (mes == dataAtual) {
           valueExpense += Number(expense.value)
@@ -120,10 +128,7 @@ export class DespesaComponent {
       this.fixedExpense.getExpenses(this.id).subscribe(expenses => {
         expenses.expense.forEach(expense => {
           let partesData = expense.dateExpense.split('/');
-          let date = new Date(partesData[0]);
-
-          let gmt = addHours(date, 3)
-          let mes = gmt.getMonth() + 1
+          let mes = Number(partesData[1]);
 
           if (mes <= dataAtual) {
             valueFixedExpense += Number(expense.value)

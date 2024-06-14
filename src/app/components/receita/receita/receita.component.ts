@@ -22,7 +22,7 @@ export class ReceitaComponent {
 
   constructor(
     private service: RecipeService,
-    private recipeService: FixedrecipeService,
+    private serviceFixed: FixedrecipeService,
     private modal: ModalService
   ) { }
 
@@ -66,31 +66,46 @@ export class ReceitaComponent {
 
   listRecipeFixed() {
 
-    this.recipeService.getRecipes(this.id).subscribe(recipes => {
+    this.serviceFixed.getRecipes(this.id).subscribe(recipes => {
 
       recipes.recipe.forEach(recipe => {
         const partesData = recipe.dateRecipe.split('/');
-        const date = new Date(partesData[0])
-
-        let gmt = addHours(date, 3)
-        let dia = gmt.getDate()
-        let mes = gmt.getMonth() + 1
-        let ano = gmt.getFullYear()
+        let dia = Number(partesData[0])
+        let mes = Number(partesData[1])
+        let ano = Number(partesData[2])
 
         const diaFormatado = (dia < 10) ? `0${dia}` : dia;
         const mesFormatado = (mes < 10) ? `0${mes}` : mes;
 
         let dataAtual = new Date().getMonth() + 1
 
-        if (mes == dataAtual) {
-          this.listaFixa.push({ id:Number(recipe.id) ,nome: `${recipe.name}`, valor: Number(recipe.value), data: `${diaFormatado}/${mesFormatado}/${ano}` })
+        if (mes <= dataAtual) {
+
+          if(recipe.finalDate == null){
+            this.listaFixa.push({ id:Number(recipe.id) ,nome: `${recipe.name}`, valor: Number(recipe.value), data: `${diaFormatado}/${mesFormatado}/${ano}` })
+          }else{
+            const finalDate = recipe.finalDate.split('/');
+            if(Number(finalDate[1]) >= dataAtual){
+              this.listaFixa.push({ id:Number(recipe.id) ,nome: `${recipe.name}`, valor: Number(recipe.value), data: `${diaFormatado}/${mesFormatado}/${ano}` })
+            }
+
+          }
         }
       })
+
       this.listaFixa.sort((a, b) => {
         const dataA = this.converteData(a.data);
         const dataB = this.converteData(b.data);
-        return dataA.getDate() - dataB.getDate(); // Compare as datas como números
+
+        const mesComparacao = dataA.getMonth() - dataB.getMonth();
+
+        if (mesComparacao !== 0) {
+            return mesComparacao;
+        }
+
+        return dataA.getDate() - dataB.getDate();
       })
+
     })
 
   }
@@ -116,13 +131,10 @@ export class ReceitaComponent {
         }
       })
 
-      this.recipeService.getRecipes(this.id).subscribe(recipes => {
+      this.serviceFixed.getRecipes(this.id).subscribe(recipes => {
         recipes.recipe.forEach(recipe => {
           let partesData = recipe.dateRecipe.split('/');
-          let date = new Date(partesData[0]);
-
-          let gmt = addHours(date, 3)
-          let mes = gmt.getMonth() + 1
+          let mes = Number(partesData[1])
 
 
           if (mes <= dataAtual) {
@@ -248,7 +260,7 @@ export class ReceitaComponent {
           value: result.valor,
           dateRecipe: result.date
         }
-        this.recipeService.postRecipe(receita).subscribe((result) =>{
+        this.serviceFixed.postRecipe(receita).subscribe((result) =>{
 
           window.location.reload();
         })
@@ -274,7 +286,7 @@ export class ReceitaComponent {
   }
 
   openModalEditRecipeFixed = (id: number) => {
-    this.recipeService.getOneRecipe(id).subscribe((result =>{
+    this.serviceFixed.getOneRecipe(id).subscribe((result =>{
       console.log(result);
       localStorage.setItem('recipeName', `${result.recipe.name}`)
       localStorage.setItem('recipeId', `${result.recipe.id}`)

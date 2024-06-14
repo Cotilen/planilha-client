@@ -30,7 +30,7 @@ export class LoginUserComponent {
     if (form.valid) {
       this.userService.login(form.value).subscribe(
         (user) => {
-          localStorage.setItem('id', `${user.user.id}`);
+          localStorage.setItem('id', `${user.usuario.id}`);
           this.toastr.success('Login efetuado com sucesso!', 'Sucesso!')
           this.router.navigate(["./dashboard"]);
         },

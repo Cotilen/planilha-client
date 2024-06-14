@@ -2,7 +2,7 @@ import { Component, ElementRef } from '@angular/core';
 import { UserService } from '../../../service/user/user.service';
 import { Chart } from 'chart.js/auto';
 import { addHours } from 'date-fns';
-import { UserRecipe } from '../../../service/user/user';
+import { UserExpense, UserRecipe } from '../../../service/user/user';
 
 
 @Component({
@@ -282,7 +282,7 @@ export class DashboardComponent {
     })
 
     setTimeout(() => {
-    this.chartTrimestral(arrayExpense, arrayRecipe)
+      this.chartTrimestral(arrayExpense, arrayRecipe)
     }, 100);
 
 
@@ -333,43 +333,74 @@ export class DashboardComponent {
     const month = date.getMonth() + 1
 
     this.userService.getDataDashboard(this.id, month).subscribe(data => {
+      console.log(data
 
-      let dataMaiorRecipe = new Date(data.recipe[0].data)
-      let dadosRecipe = data.recipe[0]
+      );
+      let dataMaiorRecipe: Date
+      let dataReceita: Date
+      let dadosRecipe: UserRecipe
+      let mesReceita: Date
 
-      data.recipe.forEach(recipe => {
+      let dataMaiorExpense: Date
+      let dataDespesa: Date
+      let dadosExpense: UserExpense
+      let mesDespesa: Date
 
-        let date = new Date(recipe.data)
+      if (data.recipe.length > 0) {
+        dataMaiorRecipe = new Date(data.recipe[0].data)
 
-        if (date > dataMaiorRecipe) {
-          dadosRecipe = recipe
-        }
+        dadosRecipe = data.recipe[0]
 
-      })
+        data.recipe.forEach(recipe => {
 
-      let dataReceita = new Date(dadosRecipe.data)
-      let mesReceita = addHours(dataReceita, 3)
+          let date = new Date(recipe.data)
 
-      let dataMaiorExpense = new Date(data.expense[0].data)
-      let dadosExpense = data.expense[0]
+          if (date > dataMaiorRecipe) {
+            dadosRecipe = recipe
+          }
 
-      data.expense.forEach(expense => {
+        })
 
-        let date = new Date(expense.data)
+        dataReceita = new Date(dadosRecipe.data)
+        mesReceita = addHours(dataReceita, 3)
 
-        if (date > dataMaiorExpense) {
-          dadosExpense = expense
-        }
 
-      })
+        this.dataReceita = mesReceita.getDate() + "/" + (mesReceita.getMonth() + 1)
 
-      let dataDespesa = new Date(dadosExpense.data)
-      let mesDespesa = addHours(dataDespesa, 3)
+        this.valueReceita = `R$ ${dadosRecipe.value}`
+      } else {
+        this.dataReceita = "00/00"
+        this.valueReceita = "R$ 0,00"
+      }
 
-      this.dataReceita = mesReceita.getDate() + "/" + (mesReceita.getMonth() + 1)
-      this.valueReceita = `R$ ${dadosRecipe.value}`
-      this.dataDespesa = mesDespesa.getDate() + "/" + (mesDespesa.getMonth() + 1)
-      this.valueDespesa = `R$ ${dadosExpense.value}`
+      if (data.expense.length > 0) {
+
+        dataMaiorExpense = new Date(data.expense[0].data)
+
+        dadosExpense = data.expense[0]
+
+        data.expense.forEach(expense => {
+
+          let date = new Date(expense.data)
+
+          if (date > dataMaiorExpense) {
+            dadosExpense = expense
+          }
+
+        })
+
+        dataDespesa = new Date(dadosExpense.data)
+        mesDespesa = addHours(dataDespesa, 3)
+
+        this.dataDespesa = mesDespesa.getDate() + "/" + (mesDespesa.getMonth() + 1)
+        this.valueDespesa = `R$ ${dadosExpense.value}`
+
+      }else{
+        this.dataDespesa = "00/00"
+        this.valueDespesa = "R$ 0,00"
+      }
+
+
       this.quantidadeDespesa = data.expense.length + data.fixedexpense.length
       this.quantidadeReceita = data.recipe.length + data.fixedrecipe.length
 

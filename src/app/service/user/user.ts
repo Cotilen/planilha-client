@@ -6,7 +6,7 @@ export interface User{
 }
 
 export interface UserArray{
-  user: User
+  usuario: User
 }
 
 export interface UserData{
