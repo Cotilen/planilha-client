@@ -80,3 +80,71 @@ input{
   cursor: pointer;
   color: var(--orange-color);
 }
+
+@media(max-width:1440px){
+  .card-login{
+    width: 500px;
+    height: 507px;
+  }
+
+  img{
+    width: 500px;
+    height: 507px;
+  }
+}
+
+@media(max-width:1024px){
+  .card-login{
+    width: 400px;
+    height: 403px;
+  }
+
+  img{
+    width: 400px;
+    height: 403px;
+  }
+
+  .login{
+    padding-left:30% ;
+  }
+}
+
+@media(max-width:768px){
+  .card-login{
+    width: 500px;
+    height: 507px;
+  }
+
+  .mulher{
+    display: none;
+    }
+}
+
+@media(max-width:425px){
+  .card-login{
+    width: 290px;
+    height: 400px;
+  }
+
+  input{
+    width: 250px;
+  }
+
+  .form__button{
+    width: 280px;
+  }
+
+  .eye{
+    height: 15px;
+    width: 20px;
+  }
+
+  .label-eye{
+    gap: 5px;
+  }
+
+  .login{
+    justify-content: center;
+    padding-left:0 ;
+  }
+}

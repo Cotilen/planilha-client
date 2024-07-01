@@ -39,9 +39,7 @@ export class DashboardComponent {
     this.getValueChartAnual()
     this.getValueChartTotal()
 
-
   }
-
 
   getValueDashboard() {
     const date = new Date()
@@ -60,10 +58,22 @@ export class DashboardComponent {
         data.fixedrecipe.map((fixedrecipe) => {
           let data = new Date(fixedrecipe.dateRecipe).getMonth() + 1
           let dataAtual = new Date().getMonth() + 1
-          if (dataAtual >= data) {
-            this.valueReceitaDash += fixedrecipe.value
-          }
+          if (fixedrecipe.finalDate == null) {
 
+            if (dataAtual >= data) {
+              this.valueReceitaDash += fixedrecipe.value
+            }
+          } else {
+            const partesData = new Date(fixedrecipe.finalDate)
+
+            const gmt = addHours(partesData, 3)
+            const mes = gmt.getMonth() + 1
+
+            if (dataAtual >= data && mes >= dataAtual) {
+              this.valueReceitaDash += fixedrecipe.value
+            }
+
+          }
         })
       }
       //Verifica se as despesas não estão vazias e adiciona à tela
@@ -78,9 +88,21 @@ export class DashboardComponent {
           let data = new Date(fixedexpense.dateExpense).getMonth() + 1
           let dataAtual = new Date().getMonth() + 1
 
-          if (dataAtual >= data) {
-            this.valueDespesaDash += fixedexpense.value
+          if (fixedexpense.finalDate == null) {
+            if (dataAtual >= data) {
+              this.valueDespesaDash += fixedexpense.value
+            }
+          } else {
+            const partesData = new Date(fixedexpense.finalDate)
+
+            const gmt = addHours(partesData, 3)
+            const mes = gmt.getMonth() + 1
+            if (dataAtual >= data && mes >= dataAtual) {
+              this.valueDespesaDash += fixedexpense.value
+            }
           }
+
+
         })
       }
       this.valueSaldo = this.valueReceitaDash - this.valueDespesaDash
@@ -102,6 +124,8 @@ export class DashboardComponent {
 
 
     this.userService.getDataGrafico(this.id, year).subscribe(data => {
+      console.log(data);
+
       let primeiro = 0
       let segundo = 0
       let terceiro = 0
@@ -130,6 +154,8 @@ export class DashboardComponent {
 
       data.fixedexpense.map(expense => {
         const date = new Date(expense.dateExpense).getMonth() + 1
+        const dataFinal = new Date(expense.finalDate).getMonth() + 1
+
 
         switch (date) {
           case 1:
@@ -188,6 +214,64 @@ export class DashboardComponent {
             break;
         }
 
+        if(expense.finalDate != null){
+          const gmtFinal = new Date(expense.finalDate)
+          const dataFinal = addHours(gmtFinal,3).getMonth() + 1
+
+          switch (dataFinal) {
+            case 1:
+              primeiro -= (expense.value * 2)
+              segundo -= (expense.value * 3)
+              terceiro -= (expense.value * 3)
+              quarto -= (expense.value * 3)
+              break;
+            case 2:
+              primeiro -= (expense.value)
+              segundo -= (expense.value * 3)
+              terceiro -= (expense.value * 3)
+              quarto -= (expense.value * 3)
+              break;
+            case 3:
+              segundo -= (expense.value * 3)
+              terceiro -= (expense.value * 3)
+              quarto -= (expense.value * 3)
+              break;
+            case 4:
+              segundo -= (expense.value * 2)
+              terceiro -= (expense.value * 3)
+              quarto -= (expense.value * 3)
+              break;
+            case 5:
+              segundo -= (expense.value)
+              terceiro -= (expense.value * 3)
+              quarto -= (expense.value * 3)
+              break;
+            case 6:
+              terceiro -= (expense.value * 3)
+              quarto -= (expense.value * 3)
+              break;
+            case 7:
+              terceiro -= (expense.value * 2)
+              quarto -= (expense.value * 3)
+              break;
+            case 8:
+              terceiro -= (expense.value)
+              quarto -= (expense.value * 3)
+              break;
+            case 9:
+              quarto -= (expense.value * 3)
+              break;
+            case 10:
+              quarto -= (expense.value * 2)
+              break;
+            case 11:
+              quarto -= (expense.value)
+              break;
+            case 12:
+              break;
+          }
+
+        }
 
       })
 
@@ -207,7 +291,9 @@ export class DashboardComponent {
       })
 
       data.fixedrecipe.map(recipe => {
-        const date = new Date(recipe.dateRecipe).getMonth() + 1
+
+        const gmt = new Date(recipe.dateRecipe)
+        const date = addHours(gmt, 3).getMonth() + 1
 
         switch (date) {
           case 1:
@@ -264,6 +350,64 @@ export class DashboardComponent {
           case 12:
             quartoRecipe += (recipe.value)
             break;
+        }
+
+        if(recipe.finalDate != null){
+          const gmtFinal = new Date(recipe.finalDate)
+          const dataFinal = addHours(gmtFinal,3).getMonth() + 1
+
+          switch (dataFinal) {
+            case 1:
+              primeiroRecipe -= (recipe.value * 2)
+              segundoRecipe -= (recipe.value * 3)
+              terceiroRecipe -= (recipe.value * 3)
+              quartoRecipe -= (recipe.value * 3)
+              break;
+            case 2:
+              primeiroRecipe -= (recipe.value)
+              segundoRecipe -= (recipe.value * 3)
+              terceiroRecipe -= (recipe.value * 3)
+              quartoRecipe -= (recipe.value * 3)
+              break;
+            case 3:
+              segundoRecipe -= (recipe.value * 3)
+              terceiroRecipe -= (recipe.value * 3)
+              quartoRecipe -= (recipe.value * 3)
+              break;
+            case 4:
+              segundoRecipe -= (recipe.value * 2)
+              terceiroRecipe -= (recipe.value * 3)
+              quartoRecipe -= (recipe.value * 3)
+              break;
+            case 5:
+              segundoRecipe -= (recipe.value)
+              terceiroRecipe -= (recipe.value * 3)
+              quartoRecipe -= (recipe.value * 3)
+              break;
+            case 6:
+              terceiroRecipe -= (recipe.value * 3)
+              quartoRecipe -= (recipe.value * 3)
+              break;
+            case 7:
+              terceiroRecipe -= (recipe.value * 2)
+              quartoRecipe -= (recipe.value * 3)
+              break;
+            case 8:
+              terceiroRecipe -= (recipe.value)
+              quartoRecipe -= (recipe.value * 3)
+              break;
+            case 9:
+              quartoRecipe -= (recipe.value * 3)
+              break;
+            case 10:
+              quartoRecipe -= (recipe.value * 2)
+              break;
+            case 11:
+              quartoRecipe -= (recipe.value)
+              break;
+            case 12:
+              break;
+          }
         }
 
       })
@@ -333,9 +477,7 @@ export class DashboardComponent {
     const month = date.getMonth() + 1
 
     this.userService.getDataDashboard(this.id, month).subscribe(data => {
-      console.log(data
 
-      );
       let dataMaiorRecipe: Date
       let dataReceita: Date
       let dadosRecipe: UserRecipe
@@ -395,7 +537,7 @@ export class DashboardComponent {
         this.dataDespesa = mesDespesa.getDate() + "/" + (mesDespesa.getMonth() + 1)
         this.valueDespesa = `R$ ${dadosExpense.value}`
 
-      }else{
+      } else {
         this.dataDespesa = "00/00"
         this.valueDespesa = "R$ 0,00"
       }
@@ -471,6 +613,17 @@ export class DashboardComponent {
         for (let i = mes.getMonth() + 1; i <= 12; i++) {
           receitasPorMes[i - 1] += recipe.value
         }
+
+        if(recipe.finalDate != null){
+          const gmtFinal = new Date(recipe.finalDate)
+          const dataFinal = addHours(gmtFinal,3).getMonth() + 1
+
+          for (let i = dataFinal + 1; i <= 12; i++) {
+
+            receitasPorMes[i - 1] -= recipe.value
+          }
+
+        }
       })
 
       data.expense.map(expense => {
@@ -526,7 +679,20 @@ export class DashboardComponent {
         for (let i = mes.getMonth() + 1; i <= 12; i++) {
           despesasPorMes[i - 1] += expense.value
         }
+
+
+      if(expense.finalDate != null){
+        const gmtFinal = new Date(expense.finalDate)
+        const dataFinal = addHours(gmtFinal,3).getMonth() + 1
+
+        for (let i = dataFinal + 1; i <= 12; i++) {
+
+          despesasPorMes[i - 1] -= expense.value
+        }
+
+      }
       })
+
 
       this.chartAnual(receitasPorMes, despesasPorMes)
 
@@ -599,6 +765,17 @@ export class DashboardComponent {
           count++
         }
 
+
+      if(recipe.finalDate != null){
+        const gmtFinal = new Date(recipe.finalDate)
+        const dataFinal = addHours(gmtFinal,3).getMonth() + 1
+
+        for (let i = dataFinal + 1; i <= 12; i++) {
+          valueReceita -= recipe.value
+        }
+
+      }
+
       })
 
       data.expense.map(expense => {
@@ -615,6 +792,16 @@ export class DashboardComponent {
           valueDespesa += expense.value
 
           count++
+        }
+
+        if(expense.finalDate != null){
+          const gmtFinal = new Date(expense.finalDate)
+          const dataFinal = addHours(gmtFinal,3).getMonth() + 1
+
+          for (let i = dataFinal + 1; i <= 12; i++) {
+            valueDespesa -= expense.value
+          }
+
         }
       })
 

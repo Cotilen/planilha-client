@@ -2,6 +2,9 @@ import { Component, Input } from '@angular/core';
 import { RecipeService } from '../../../service/recipe/recipe.service';
 import { FixedrecipeService } from '../../../service/fixedrecipe/fixedrecipe.service';
 import { addHours } from 'date-fns';
+import { ModalService } from '@developer-partners/ngx-modal-dialog';
+import { EditRecipeComponent } from '../../modals/receita/editar-receita/edit-recipe.component';
+import { EditRecipefixedComponent } from '../../modals/receita-fixa/editar-receita-fixa/edit-recipefixed.component';
 
 @Component({
   selector: 'app-lista-unificada',
@@ -10,7 +13,7 @@ import { addHours } from 'date-fns';
 })
 export class ListaUnificadaComponent {
   id = Number(localStorage.getItem('id'));
-  list = [{ id: 0, nome: "", valor: 0, data: "", color: "" }]
+  list = [{ id: 0, nome: "", valor: 0, data: "", color: "", tipo:"" }]
   @Input() color = "var(--green-color)"
   mes = "Janeiro"
   valorMes = new Date().getMonth() + 1
@@ -18,7 +21,9 @@ export class ListaUnificadaComponent {
 
   constructor(
     private recipe: RecipeService,
-    private recipeFixed: FixedrecipeService
+    private recipeFixed: FixedrecipeService,
+    private modal: ModalService
+
   ) { }
 
   ngOnInit(): void {
@@ -35,7 +40,7 @@ export class ListaUnificadaComponent {
 
 
         if (Number(partesData[1]) == mesAtual) {
-          this.list.push({ id: result.id ?? 0, nome: result.name ?? "", valor: value ?? 0, data: result.dateRecipe, color:'#01B574' })
+          this.list.push({ id: result.id ?? 0, nome: result.name ?? "", valor: value ?? 0, data: result.dateRecipe, color:'#01B574', tipo:"normal" })
         }
       })
     })
@@ -53,13 +58,13 @@ export class ListaUnificadaComponent {
 
         if (result.finalDate == null) {
           if (mes <= mesAtual) {
-            this.list.push({ id: result.id ?? 0, nome: result.name ?? "", valor: value ?? 0, data: `${diaFormatado}/${mesFormatado}/${ano}`, color:'#FB5927' })
+            this.list.push({ id: result.id ?? 0, nome: result.name ?? "", valor: value ?? 0, data: `${diaFormatado}/${mesFormatado}/${ano}`, color:'#FB5927', tipo:"fixo" })
           }
         } else {
           const dataFinal = result.finalDate.split('/')
           if (mes <= mesAtual && Number(dataFinal[1]) >= mesAtual) {
 
-            this.list.push({ id: result.id ?? 0, nome: result.name ?? "", valor: value ?? 0, data: `${diaFormatado}/${mesFormatado}/${ano}`, color:'#FB5927' })
+            this.list.push({ id: result.id ?? 0, nome: result.name ?? "", valor: value ?? 0, data: `${diaFormatado}/${mesFormatado}/${ano}`, color:'#FB5927', tipo:"fixo" })
           }
         }
       })
@@ -163,4 +168,45 @@ export class ListaUnificadaComponent {
 
     return new Date(ano, mes, dia);
   }
+
+  openModal(id: number, tipo:string){
+
+    if(tipo == "normal"){
+      this.recipe.getOneRecipe(id).subscribe((result =>{
+        localStorage.setItem('recipeName', `${result.recipe.name}`)
+        localStorage.setItem('recipeId', `${result.recipe.id}`)
+        localStorage.setItem('recipeDate', `${result.recipe.dateRecipe}`)
+        localStorage.setItem('recipeValue', `${result.recipe.value}`)
+
+        this.modal.show(EditRecipeComponent,{
+          title: 'Editar Receita',
+        }).result()
+          .subscribe((result: any) =>{
+            if(result){
+              window.location.reload()
+            }
+          })
+         }))
+    }else{
+      this.recipeFixed.getOneRecipe(id).subscribe((result =>{
+        console.log(result);
+        localStorage.setItem('recipeName', `${result.recipe.name}`)
+        localStorage.setItem('recipeId', `${result.recipe.id}`)
+        localStorage.setItem('recipeDate', `${result.recipe.dateRecipe}`)
+        localStorage.setItem('recipeValue', `${result.recipe.value}`)
+
+        localStorage.setItem('recipeFinalDate', `${result.recipe.finalDate}`)
+
+        this.modal.show(EditRecipefixedComponent,{
+          title: 'Editar Receita Fixa',
+        }).result()
+          .subscribe((result: any) =>{
+            if(result){
+              window.location.reload()
+            }
+          })
+         }))
+    }
+  }
 }
+

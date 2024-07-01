@@ -28,7 +28,8 @@ export interface UserFixedRecipe{
   id: number,
   name: string,
   value: number,
-  dateRecipe: string
+  dateRecipe: string,
+  finalDate: string
 }
 
 export interface UserExpense{
@@ -42,5 +43,6 @@ export interface UserFixedExpense{
   id: number
   name: string
   value: number,
-  dateExpense: string
+  dateExpense: string,
+  finalDate: string
 }
