@@ -8,14 +8,20 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 })
 export class HeaderComponent {
 
+  constructor(private elementRef: ElementRef) { }
+
   fabars = faBars
   @ViewChild('lista') lista!: ElementRef
 
-  abrimenu(){
-    console.log(this.lista);
+  abrimenu() {
+    const menu = this.elementRef.nativeElement.querySelector('#lista')
+    const bars = this.elementRef.nativeElement.querySelector('#bars')
+
+    if (menu.style.display === "block") {
+      menu.style.display = "none";
+    } else {
+      menu.style.display = "block";
+    }
 
   }
-
-
-
 }

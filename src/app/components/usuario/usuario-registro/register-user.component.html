@@ -22,13 +22,35 @@
         </div>
       </div>
       <div class="input">
+        <label for="ConfirmEmail">Confirme o email</label>
+        <input type="text" name="confirmEmail" id="confirmEmail" ngModel required pattern="^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$"
+          #confirmEmail="ngModel" />
+        <div *ngIf="(confirmEmail?.invalid && confirmEmail?.touched) || confirmEmail?.dirty">
+          <app-mensagem *ngIf="confirmEmail?.errors?.['required']" mensagem="O email deve ser preenchido"></app-mensagem>
+        </div>
+      </div>
+      <div class="input">
         <label for="senha">Senha</label>
+        <label class="label-eye">
         <input type="password" name="password" id="password" ngModel required minlength="8" #password="ngModel" />
+        <img (click)="trocarVisibilidade()" id="eye"  class="eye" src={{eyeImage}} alt="">
+        </label>
         <div *ngIf="(password?.invalid && password?.touched) || password?.dirty">
           <app-mensagem *ngIf="password?.errors?.['required']"
             mensagem="O campo de senha deve ser preenchido"></app-mensagem>
           <app-mensagem *ngIf="password?.errors?.['minlength']"
             mensagem="O campo deve possuir no minimo 8 caracteres"></app-mensagem>
+        </div>
+      </div>
+      <div class="input">
+        <label for="senha">Confirme a senha</label>
+        <label class="label-eye">
+          <input type="password" name="confirmPassword" id="confirmPassword" ngModel required minlength="8" #confirmPassword="ngModel" />
+        <img (click)="trocarVisibilidadeConfirm()" id="eyeConfirm"  class="eye" src={{eyeImageConfirm}} alt="">
+        </label>
+        <div *ngIf="(confirmPassword?.invalid && confirmPassword?.touched) || confirmPassword?.dirty">
+          <app-mensagem *ngIf="confirmPassword?.errors?.['required']"
+            mensagem="O campo de senha deve ser preenchido"></app-mensagem>
         </div>
       </div>
       <button type="submit" class="form__button">Enviar formulário</button>
@@ -39,5 +61,5 @@
     </div>
 
   </div>
-  <img src="../../../assets/img/img-register.png" alt="">
+  <img class="homem" src="../../../assets/img/img-register.png" alt="">
 </div>

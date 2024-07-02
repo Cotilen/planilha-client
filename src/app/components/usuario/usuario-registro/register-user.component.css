@@ -11,7 +11,7 @@
 
 .card-register{
   width: 639px;
-  height: 650px;
+  height: 700px;
   border-radius: 20px;
   background-color: #ffffff33;
   display: flex;
@@ -70,3 +70,80 @@ input{
   cursor: pointer;
   color: var(--orange-color);
 }
+
+.eye{
+  height: 20px;
+  width: 25px;
+}
+
+.label-eye{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+@media(max-width:1440px){
+  .card-register{
+    width: 500px;
+    height: 650px;
+  }
+
+  img{
+    width: 500px;
+    height: 507px;
+  }
+}
+
+@media(max-width:1024px){
+  .card-register{
+    width: 400px;
+    height: 650px;
+  }
+
+  img{
+    width: 400px;
+    height: 403px;
+  }
+
+}
+
+@media(max-width:768px){
+  .card-register{
+    width: 500px;
+    height: 650px;
+  }
+
+  .homem{
+    display: none;
+    }
+}
+
+@media(max-width:425px){
+  .card-register{
+    width: 290px;
+    height: 650px;
+  }
+
+  input{
+    width: 250px;
+  }
+
+  .form__button{
+    width: 280px;
+  }
+
+  .eye{
+    height: 15px;
+    width: 20px;
+  }
+
+  .label-eye{
+    gap: 5px;
+  }
+
+  .login{
+    justify-content: center;
+    padding-left:0 ;
+  }
+}
+

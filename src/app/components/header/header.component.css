@@ -93,10 +93,26 @@ a{
 
   .lista{
     display: none;
+
   }
 
   .linha{
     display: none;
   }
+
+  .lista{
+    flex-direction: column;
+    background-color: var(--background-color);
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    padding: 10px 0;
+    gap: 8px;
+}
+
+.lista li{
+  height: 30px;
+}
 
 }
