@@ -24,6 +24,10 @@ a {
   background-color: var(--background-color) !important;
 }
 
+.dp-modal{
+  width: 600px;
+}
+
 
 :root{
   --background-color: #23343B;

@@ -70,8 +70,9 @@ a{
   }
 }
 
-@media(max-width: 375px) {
+@media(max-width: 425px) {
   .container{
+    position: fixed;
     flex-direction: row;
     height: 50px;
     width: 100%;
@@ -84,7 +85,6 @@ a{
     height: 50px;
     width: 100px;
   }
-
 
   .bars{
     display: block;
@@ -104,7 +104,7 @@ a{
     flex-direction: column;
     background-color: var(--background-color);
     position: absolute;
-    top: 60px;
+    top: 50px;
     left: 0;
     width: 100%;
     padding: 10px 0;

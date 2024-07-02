@@ -1,7 +1,9 @@
 .table-container {
   width: 650px;
-  height: 400px; /* Altura fixa da tabela */
-  overflow-y: auto; /* Adiciona barra de rolagem quando necessário */
+  height: 400px;
+  /* Altura fixa da tabela */
+  overflow-y: auto;
+  /* Adiciona barra de rolagem quando necessário */
   border: 5px ridge var(--second-color);
   border-radius: 20px;
   background-color: var(--second-color);
@@ -13,7 +15,8 @@ table {
   border-collapse: collapse;
 }
 
-th, td {
+th,
+td {
   padding: 8px;
   text-align: left;
 }
@@ -27,24 +30,42 @@ thead {
 }
 
 @media (max-width: 1450px) {
-  .table-container{
+  .table-container {
     width: 400px;
     height: 300px;
   }
 }
 
 @media (max-width: 1360px) {
-  .table-container{
+  .table-container {
     width: 400px;
     height: 250px;
   }
 }
 
 @media (max-width: 1024px) {
-  .table-container{
+  .table-container {
     width: 300px;
     height: 250px;
   }
 }
 
+@media (max-width: 1024px) {
+  .table-container {
+    width: 400px;
+    height: 350px;
+  }
+}
 
+@media (max-width: 768px) {
+  .table-container {
+    width: 460px;
+    height: 350px;
+  }
+}
+
+@media (max-width: 425px) {
+  .table-container {
+    width: 310px;
+  }
+}

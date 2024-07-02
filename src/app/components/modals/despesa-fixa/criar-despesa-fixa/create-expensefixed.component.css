@@ -17,11 +17,11 @@ main{
 
 input{
   height: 30px;
-  max-width: 500px;
+  max-width: 100%;
 }
 
 .botoes{
-  max-width: 500px;
+  max-width: 100%;
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
@@ -29,7 +29,7 @@ input{
 
 #description{
   height: 100px;
-  max-width: 500px;
+  max-width: 100%;
 }
 
 button{
@@ -47,5 +47,5 @@ button{
 
 #categorias{
   height: 30px;
-  max-width: 500px;
+  max-width: 100%;
 }

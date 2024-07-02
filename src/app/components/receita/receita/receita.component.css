@@ -7,21 +7,21 @@
   padding-right: 35px;
 }
 
-.orange{
+.orange {
   background-color: var(--orange-color);
 }
 
-.green{
+.green {
   background-color: var(--green-color);
 
 }
 
-.main{
+.main {
   grid-area: main;
   padding-left: 50px;
 }
 
-.botoes{
+.botoes {
   background-color: var(--second-color);
   width: 350px;
   display: flex;
@@ -33,7 +33,7 @@
   border: 5px ridge var(--second-color);
 }
 
-.botao{
+.botao {
   color: #fff;
   width: 205px;
   height: 60px;
@@ -45,7 +45,7 @@
   font-size: 1rem;
 }
 
-.titulo{
+.titulo {
   font-size: 2rem;
   font-weight: bold;
   color: #fff;
@@ -53,14 +53,14 @@
   margin-bottom: 10px;
 }
 
-.receita{
+.receita {
   width: 100%;
   display: flex;
   gap: 50px;
-
+  flex-wrap: wrap;
 }
 
-#pizza{
+#pizza {
   background-color: var(--second-color);
   border-radius: 20px;
   border: 5px ridge var(--second-color);
@@ -68,12 +68,12 @@
   max-height: 400px;
 }
 
-.receita-fixa{
+.receita-fixa {
   display: flex;
   gap: 50px;
 }
 
-.retangulo-valores{
+.retangulo-valores {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -93,20 +93,21 @@
     grid-template-columns: 270px auto;
   }
 
-  .main{
+  .main {
     padding-left: 20px;
   }
 
-  .receita, .receita-fixa{
+  .receita,
+  .receita-fixa {
     gap: 25px;
   }
 
-  #pizza{
+  #pizza {
     max-width: 300px;
     max-height: 300px;
   }
 
-  .retangulo-valores{
+  .retangulo-valores {
     width: 500px;
     height: 300px;
   }
@@ -114,52 +115,118 @@
 }
 
 @media (max-width: 1360px) {
-  .botoes{
+  .botoes {
     width: 250px;
   }
 
-  .titulo{
+  .titulo {
     padding-top: 5px;
     font-size: 1.5rem;
   }
 
-  #pizza{
+  #pizza {
     max-width: 250px;
     max-height: 250px;
   }
 
-  .retangulo-valores{
+  .retangulo-valores {
     height: 250px;
   }
 }
 
 @media(max-width: 1024px) {
+  .titulo {
+    padding-left: 20px;
+  }
 
   .container {
     grid-template-columns: 190px auto;
   }
 
-  .main{
+  .main {
     padding-left: 0;
   }
 
-  .receita, .receita-fixa{
-    gap: 15px;
+  .receita,
+  .receita-fixa {
+    gap: 10px;
+    padding-left: 0px;
+    flex-wrap: nowrap;
   }
 
-  .botoes{
+  .botoes {
     width: 160px;
   }
 
-  .botao{
+  .botao {
     width: 140px;
-    height: 30px;
+    height: 50px;
     border-radius: 15px;
     font-size: 0.8rem;
   }
 
-  .retangulo-valores{
+  .retangulo-valores {
     width: 400px;
   }
 }
 
+@media(max-width: 768px) {
+
+  .receita,
+  .receita-fixa {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .botoes {
+    width: 200px;
+    height: 250px;
+  }
+
+  .botao {
+    width: 180px;
+    height: 50px;
+  }
+
+  .retangulo-valores {
+    width: 460px;
+    height: 250px;
+    margin-bottom: 15px;
+  }
+}
+
+@media(max-width: 425px) {
+  .main{
+    padding-top: 60px;
+
+  }
+
+  .receita {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    padding-right: 0;
+  }
+
+  .retangulo-valores {
+    height: 700px;
+    width: 310px;
+  }
+
+  .botoes {
+    width: 310px;
+  }
+
+  #pizza {
+    max-width: 310px;
+    max-height: 310px;
+  }
+
+  .botao {
+    width: 200px;
+  }
+}

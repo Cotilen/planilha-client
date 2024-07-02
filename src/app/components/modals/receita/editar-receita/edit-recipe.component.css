@@ -17,11 +17,11 @@ main{
 
 input{
   height: 30px;
-  max-width: 500px;
+  max-width: 100%;
 }
 
 .botoes{
-  max-width: 500px;
+  max-width: 100%;
   display: flex;
   margin-top: 20px;
   gap: 10px;

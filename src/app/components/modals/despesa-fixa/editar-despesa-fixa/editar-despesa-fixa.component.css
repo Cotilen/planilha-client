@@ -17,11 +17,11 @@ main{
 
 input{
   height: 30px;
-  max-width: 500px;
+  max-width: 100%;
 }
 
 .botoes{
-  max-width: 500px;
+  max-width: 100%;
   display: flex;
   margin-top: 10px;
   gap: 10px;
@@ -46,11 +46,11 @@ button{
 
 #description{
   height: 100px;
-  max-width: 500px;
+  max-width: 100%;
 }
 
 #categorias{
   height: 30px;
-  max-width: 500px;
+  max-width: 100%;
 }
 
